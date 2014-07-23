@@ -16,6 +16,6 @@ curl -Lo- https://bit.ly/janus-bootstrap | bash
 
 # clone superior email client config
 echo -e "\n\n\nrun \"sudo apt-get install urlview muttprint muttprint-manual mutt-patched w3m mutt\"\n\n\n"
-git clone git@github.com:azet/muttrc.git .muttrc
+git clone git@github.com:azet/muttrc.git .mutt
 
 echo "done."
