@@ -17,5 +17,22 @@ curl -Lo- https://bit.ly/janus-bootstrap | bash
 # clone superior email client config
 echo -e "\n\n\nrun \"sudo apt-get install urlview muttprint muttprint-manual mutt-patched w3m mutt\"\n\n\n"
 git clone git@github.com:azet/muttrc.git .mutt
+echo -e "\n\n\ndon't forget to configure .mutt/!\n\n\n"
 
+# add stuff that's not in a repo
+cat > .gitconfig <<EOF
+[user]
+  name = Aaron Zauner
+  email = azet@azet.org
+[push]
+  default = curlrrent
+EOF
+
+cat > .vimrc.after <<EOF
+set background=dark
+color molokai
+let g:rehash256 = 1
+EOF
+
+# be done
 echo -e "\n\ndone."

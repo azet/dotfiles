@@ -1,4 +1,0 @@
-set background=dark
-color molokai
-let g:rehash256 = 1
-
