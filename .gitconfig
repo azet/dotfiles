@@ -1,7 +1,5 @@
 [user]
 	name = Aaron Zauner
 	email = azet@azet.org
-[core]
-	excludesfile = /Users/azet/.gitignore_global
 [push]
 	default = current
