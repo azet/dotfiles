@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 
-[[ $(which git zsh wget) ]] || {
-    echo "need git, zsh and wget!"
+function install_pkg() {
+  case $(uname) in
+  *Linux*)
+    $(which apt-get &>/dev/null) || {
+      echo "not debian based, do this manually."
+      exit 1
+    }
+    sudo apt-get install urlview muttprint muttprint-manual mutt-patched w3m mutt curl      \
+                         ruby rake rubygems build-essential cmake git wget zsh autoconf     \
+                         automake autotools-dev debhelper dh-make gnupg fakeroot devscripts \
+                         lintian patch patchutils quilt python3 golang git-buildpackage -y
+  ;;
+  *Darwin*)
+    echo "HOMEBREW ALL THE THINGS!"
     exit 1
+  ;;
+  esac
 }
+
+echo -e "\n\n\ninstalling all the things\n\n\n"
+install_pkg
 
 # install grml zsh config
 wget -O .zshrc http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
@@ -36,3 +53,4 @@ EOF
 
 # be done
 echo -e "\n\ndone."
+
