@@ -25,7 +25,7 @@ cat > .gitconfig <<EOF
   name = Aaron Zauner
   email = azet@azet.org
 [push]
-  default = curlrrent
+  default = current
 EOF
 
 cat > .vimrc.after <<EOF
