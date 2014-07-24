@@ -10,7 +10,8 @@ function install_pkg() {
     sudo apt-get install urlview muttprint muttprint-manual mutt-patched w3m mutt curl      \
                          ruby rake rubygems build-essential cmake git wget zsh autoconf     \
                          automake autotools-dev debhelper dh-make gnupg fakeroot devscripts \
-                         lintian patch patchutils quilt python3 golang git-buildpackage -y
+                         lintian patch patchutils quilt python3 golang git-buildpackage     \
+                         screen lmod -y
   ;;
   *Darwin*)
     echo "HOMEBREW ALL THE THINGS!"
