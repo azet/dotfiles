@@ -11,7 +11,7 @@ function install_pkg() {
                          ruby rake rubygems build-essential cmake git wget zsh autoconf     \
                          automake autotools-dev debhelper dh-make gnupg fakeroot devscripts \
                          lintian patch patchutils quilt python3 golang git-buildpackage     \
-                         screen tmux lmod -y
+                         rxvt-unicode screen tmux lmod -y
   ;;
   *Darwin*)
     echo "HOMEBREW ALL THE THINGS!"
@@ -79,6 +79,42 @@ set  -g display-time 1000
 set  -g status-left-length 30
 set  -g status-left '#(whoami) ::'
 set  -g status-right '#h: #(cut -d " " -f 1-3 /proc/loadavg)#[default] | %H:%M:%S#[default]'
+EOF
+
+cat > .Xdefaults <<EOF
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+URxvt.letterSpace: -1
+URxvt*scrollBar: false
+URxvt.depth: 32
+URxvt.background: [90]#000000
+URxvt.foreground: #00FF00
+URxvt*cursorColor: #00FF00
+URxvt*colorIT: #00FF00
+URxvt*colorBD: #00FF00
+! black
+URxvt.color0: #000000
+URxvt.color8: #555555
+! red
+URxvt.color1: #AA0000
+URxvt.color9: #FF5555
+! green
+URxvt.color2: #00AA00
+URxvt.color10: #55FF55
+! yellow
+URxvt.color3: #AA5500
+URxvt.color11: #FFFF55
+! blue
+URxvt.color4: #0000AD
+URxvt.color12: #9090FF
+! magenta
+URxvt.color5: #AA00AA
+URxvt.color13: #FF55FF
+! cyan
+URxvt.color6: #00AAAA
+URxvt.color14: #55FFFF
+! white
+URxvt.color7: #AAAAAA
+URxvt.color15: #FFFFFF
 EOF
 
 #EOF
