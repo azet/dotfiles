@@ -84,7 +84,7 @@ set-option -ga terminal-overrides ',*:enacs@:smacs@:rmacs@:acsc@'
 EOF
 
 cat > .Xdefaults <<EOF
-URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=11.5
 URxvt.letterSpace: -1
 URxvt*scrollBar: false
 URxvt.depth: 32
