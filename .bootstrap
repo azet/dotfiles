@@ -184,4 +184,11 @@ list-options show-uid-validity
 default-preference-list SHA512 SHA384 SHA256 AES256 AES ZLIB BZIP2 Uncompressed
 EOF
 
+mkdir -p ~/go
+cat > .zshrc.local <<EOF
+export GOPATH=$HOME/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+EOF
+
 #EOF
