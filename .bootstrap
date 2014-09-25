@@ -189,6 +189,8 @@ cat > .zshrc.local <<EOF
 export GOPATH=$HOME/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+zmodload zsh/zftp zsh/net/tcp zsh/mathfunc zsh/zpty
 EOF
 
 #EOF
