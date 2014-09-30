@@ -184,6 +184,19 @@ list-options show-uid-validity
 default-preference-list SHA512 SHA384 SHA256 AES256 AES ZLIB BZIP2 Uncompressed
 EOF
 
+# install and configure goobook to sync google contacts with mutt
+sudo pip install goobook
+cat > .goobookrc <<EOF
+[DEFAULT]
+email: azet@azet.org
+password: nope
+cache_filename: ~/.goobook_cache
+cache_expiry_hours: 10
+;filter_groupless_contacts: yes
+;default_group:
+EOF
+echo -e "\n\n\ndon't forget to configure ~/.goobookrc!\n\n\n"
+
 mkdir -p ~/go
 cat > .zshrc.local <<EOF
 export GOPATH=$HOME/go
