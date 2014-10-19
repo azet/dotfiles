@@ -8,11 +8,12 @@ function install_pkg() {
       exit 1
     }
     sudo apt-get install urlview muttprint muttprint-manual mutt-patched w3m mutt curl      \
-                         ruby rake rubygems build-essential cmake git wget zsh autoconf     \
-                         automake autotools-dev debhelper dh-make gnupg fakeroot devscripts \
-                         lintian patch patchutils quilt python3 golang git-buildpackage     \
-                         rxvt-unicode screen tmux lmod gnupg-curl gnupg-pkcs11-scd          \
-                         gnupg-agent lftp qftp -y
+                         ruby rake rubygems build-essential cmake git wget zsh zsh-dev      \
+                         zsh-common autoconf automake autotools-dev debhelper dh-make gnupg \
+                         fakeroot devscripts lintian patch patchutils quilt python3 golang  \
+                         git-buildpackage rxvt-unicode screen tmux lmod gnupg-curl          \
+                         gnupg-pkcs11-scd gnupg-agent lftp gcalcli conky-all tcpdump        \
+                         wireshark -y
   ;;
   *Darwin*)
     echo "HOMEBREW ALL THE THINGS!"
@@ -120,6 +121,8 @@ URxvt.color7: #AAAAAA
 URxvt.color15: #FFFFFF
 EOF
 
+curl -O https://gist.githubusercontent.com/azet/249d49b70bd8b7073b7b/raw/d422805fe4ca8af80e89374f27f0a253e318308a/.conkyrc
+
 mkdir -p ~/.gnupg
 cat > ~/.gnupg/sks-keyservers.cert.pem <<EOF
 -----BEGIN CERTIFICATE-----
@@ -184,11 +187,26 @@ list-options show-uid-validity
 default-preference-list SHA512 SHA384 SHA256 AES256 AES ZLIB BZIP2 Uncompressed
 EOF
 
+# install and configure goobook to sync google contacts with mutt
+sudo pip install goobook
+cat > .goobookrc <<EOF
+[DEFAULT]
+email: azet@azet.org
+password: nope
+cache_filename: ~/.goobook_cache
+cache_expiry_hours: 10
+;filter_groupless_contacts: yes
+;default_group:
+EOF
+echo -e "\n\n\ndon't forget to configure ~/.goobookrc!\n\n\n"
+
 mkdir -p ~/go
 cat > .zshrc.local <<EOF
 export GOPATH=$HOME/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 EOF
 
 #EOF
