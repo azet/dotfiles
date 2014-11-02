@@ -13,7 +13,7 @@ function install_pkg() {
                          fakeroot devscripts lintian patch patchutils quilt python3 golang  \
                          git-buildpackage rxvt-unicode screen tmux lmod gnupg-curl          \
                          gnupg-pkcs11-scd gnupg-agent lftp gcalcli conky-all tcpdump        \
-                         wireshark pandoc glances radare2 -y
+                         wireshark pandoc glances radare2 lua5.2 luajit lua-curses -y
   ;;
   *Darwin*)
     echo "HOMEBREW ALL THE THINGS!"
