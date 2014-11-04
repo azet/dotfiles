@@ -6,8 +6,8 @@
   path = foreign/grml-etc-core
   url = https://github.com/grml/grml-etc-core
 [submodule "foreign/dotgdb"]
-	path = foreign/dotgdb
-	url = https://github.com/dholm/dotgdb.git
+  path = foreign/dotgdb
+  url = https://github.com/dholm/dotgdb.git
 
 # personal
 [submodule ".mutt"]
