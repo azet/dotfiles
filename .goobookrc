@@ -1,0 +1,7 @@
+[DEFAULT]
+email: azet@azet.org
+password: nope
+cache_filename: ~/.goobook_cache
+cache_expiry_hours: 10
+;filter_groupless_contacts: yes
+;default_group:

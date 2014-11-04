@@ -1,0 +1,11 @@
+[user]
+  name = Aaron Zauner
+  email = azet@azet.org
+  signingkey = 0xFDB9B5D5
+[push]
+  default = current
+[http]
+  sslVerify
+[color]
+  ui = auto
+

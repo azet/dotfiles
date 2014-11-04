@@ -1,0 +1,18 @@
+# extend various PATHs and set global variables
+export GOPATH=$HOME/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+# load useful zsh modules
+zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
+
+# aliases
+alias ll='ls -larth'
+alias la=ll
+
+# setup aliases for local helper scripts
+for file ($HOME/dotfiles/aliases/*); do
+  name=$(basename $file:r)
+  alias $name=$file
+done
+
