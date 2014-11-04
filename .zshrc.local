@@ -1,6 +1,5 @@
 # extend various PATHs and set global variables
 export GOPATH=$HOME/go
-export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # load useful zsh modules
