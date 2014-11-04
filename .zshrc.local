@@ -11,6 +11,7 @@ alias la=ll
 alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
+alias dquilt='QUILT_PATCHES=debian/patches quilt'
 
 # setup aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do
