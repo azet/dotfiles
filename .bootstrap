@@ -207,6 +207,11 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
+
+for file ($HOME/dotfiles/scripts/*); do
+  name=$(basename $file:r)
+  alias $name=$file
+done
 EOF
 
 #EOF
