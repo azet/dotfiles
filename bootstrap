@@ -5,6 +5,13 @@
 
 source bootstrap.conf
 
+function is_excluded?() {
+  for f in ${d_excl_files}; do
+    [[ ${f} == *${files}* ]] && return 1
+  done
+  return
+}
+
 function install_pkgs() {
   case $(uname) in
   *Linux*)
