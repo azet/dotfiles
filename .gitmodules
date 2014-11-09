@@ -8,11 +8,10 @@
 [submodule "foreign/dotgdb"]
   path = foreign/dotgdb
   url = https://github.com/dholm/dotgdb.git
+[submodule "foreign/isis-scripts"]
+	path = foreign/isis-scripts
 
 # personal
 [submodule ".mutt"]
   path = .mutt
   url = git@github.com:azet/muttrc.git
-[submodule "foreign/isis-scripts"]
-	path = foreign/isis-scripts
-	url = https://github.com/isislovecruft/scripts.git
