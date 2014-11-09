@@ -25,5 +25,6 @@ function install_pkgs() {
 install_pkgs
 
 git submodule update
+git submodule foreach git pull
 
 # TODO: link all the things
