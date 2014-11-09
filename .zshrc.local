@@ -12,6 +12,7 @@ zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 # aliases
 alias ll='ls -larth'
 alias la=ll
+alias gp='git push'
 alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
