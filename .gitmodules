@@ -14,8 +14,18 @@
 [submodule "foreign/smcfancontrol"]
 	path = foreign/smcfancontrol
 	url = https://github.com/hholtmann/smcFanControl.git
+[submodule "foreign/boringssl"]
+	path = foreign/boringssl
+	url = https://boringssl.googlesource.com/boringssl
+[submodule "foreign/openssl"]
+	path = foreign/openssl
+	url = https://github.com/openssl/openssl.git
+[submodule "foreign/kevinrenskes-dotfiles"]
+	path = foreign/kevinrenskes-dotfiles
+  url = https://github.com/kevinrenskers/dotfiles.git
 
 # personal
 [submodule ".mutt"]
   path = .mutt
   url = git@github.com:azet/muttrc.git
+
