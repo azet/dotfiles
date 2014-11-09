@@ -11,7 +11,9 @@
 [submodule "foreign/isis-scripts"]
 	path = foreign/isis-scripts
   url = https://github.com/isislovecruft/scripts.git
-
+[submodule "foreign/smcfancontrol"]
+	path = foreign/smcfancontrol
+	url = https://github.com/hholtmann/smcFanControl.git
 
 # personal
 [submodule ".mutt"]
