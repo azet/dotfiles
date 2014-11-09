@@ -10,6 +10,8 @@
   url = https://github.com/dholm/dotgdb.git
 [submodule "foreign/isis-scripts"]
 	path = foreign/isis-scripts
+  url = https://github.com/isislovecruft/scripts.git
+
 
 # personal
 [submodule ".mutt"]
