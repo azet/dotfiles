@@ -10,13 +10,20 @@ export FULLNAME="Aaron Zauner"
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
 # aliases
+## navigation
 alias ll='ls -larth'
 alias la=ll
+
+## git
 alias gp='git push'
+alias gc='git clone'
 alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
+
+## Debian
 alias dquilt='QUILT_PATCHES=debian/patches quilt'
+
 
 # setup aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do
