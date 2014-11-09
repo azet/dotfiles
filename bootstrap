@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+#
+# Bootstraps user environment and software toolchain
+#
+
+source bootstrap.conf
 
 function install_pkgs() {
   case $(uname) in
@@ -7,13 +12,7 @@ function install_pkgs() {
       echo "not debian based, do this manually."
       exit 1
     }
-    sudo apt-get install -y urlview muttprint muttprint-manual mutt-patched w3m mutt curl      \
-                            ruby rake rubygems build-essential cmake git wget zsh zsh-dev      \
-                            zsh-common autoconf automake autotools-dev debhelper dh-make gnupg \
-                            fakeroot devscripts lintian patch patchutils quilt python3 golang  \
-                            git-buildpackage rxvt-unicode screen tmux lmod gnupg-curl          \
-                            gnupg-pkcs11-scd gnupg-agent lftp gcalcli conky-all tcpdump gitk   \
-                            wireshark pandoc glances radare2 lua5.2 luajit lua-curses
+    sudo apt-get install -y ${d_pkg_debian}
   ;;
   *Darwin*)
     echo "HOMEBREW ALL THE THINGS!"
