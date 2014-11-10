@@ -14,6 +14,9 @@ zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 alias ll='ls -larth'
 alias la=ll
 
+## gpg
+alias searchkey='gpg --search-keys'
+
 ## git
 alias gp='git push'
 alias gc='git clone'
