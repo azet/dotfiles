@@ -26,3 +26,9 @@
   path = .mutt
   url = git@github.com:azet/muttrc.git
 
+[submodule "foreign/biteye"]
+	path = foreign/biteye
+	url = https://github.com/BatchDrake/biteye.git
+[submodule "foreign/vix"]
+	path = foreign/vix
+	url = https://github.com/BatchDrake/vix.git
