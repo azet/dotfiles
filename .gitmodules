@@ -20,15 +20,12 @@
 [submodule "foreign/openssl"]
 	path = foreign/openssl
 	url = https://github.com/openssl/openssl.git
+[submodule "foreign/vix"]
+  path = foreign/vix
+  url = https://github.com/BatchDrake/vix.git
+
 
 # personal
 [submodule ".mutt"]
   path = .mutt
   url = git@github.com:azet/muttrc.git
-
-[submodule "foreign/biteye"]
-	path = foreign/biteye
-	url = https://github.com/BatchDrake/biteye.git
-[submodule "foreign/vix"]
-	path = foreign/vix
-	url = https://github.com/BatchDrake/vix.git
