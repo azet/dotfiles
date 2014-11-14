@@ -1,3 +1,3 @@
 ## Dist
-Contains Operating System and Distribution specific source/binary
-package installation routines as well as configuration.
+Contains Operating System, Distribution and Language specific
+source/binary package installation routines as well as configuration.

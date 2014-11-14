@@ -1,3 +1,3 @@
-foreign/smcfancontrol
-foreign/openssl
-foreign/boringssl
+git foreign/smcfancontrol
+git foreign/openssl
+git foreign/boringssl
