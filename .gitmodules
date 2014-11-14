@@ -23,7 +23,9 @@
 [submodule "foreign/vix"]
   path = foreign/vix
   url = https://github.com/BatchDrake/vix.git
-
+[submodule "foreign/peco"]
+	path = foreign/peco
+	url = https://github.com/peco/peco.git
 
 # personal
 [submodule ".mutt"]
