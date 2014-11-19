@@ -12,6 +12,28 @@ function is_excluded?() {
   return
 }
 
+function is_os?() {
+  case $(uname) in
+  *Linux*)  printf "linux"   ;;
+  *Darwin*) printf "macosx"  ;;
+  *SunOS*)  printf "solaris" ;;
+  *BSD*)    printf "bsd"     ;;
+  esac
+  return
+}
+
+function is_distro?() {
+  case $(< /etc/*release*) in
+  *Debian* | *Ubuntu*)
+    printf "debian"
+  ;;
+  *"Red Hat"* | *CentOS*)
+    printf "rh"
+  ;;
+  esac
+  return
+}
+
 function install_pkgs() {
   case $(uname) in
   *Linux*)
