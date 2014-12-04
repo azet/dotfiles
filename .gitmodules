@@ -29,12 +29,15 @@
 [submodule "foreign/teamocil"]
 	path = foreign/teamocil
 	url = https://github.com/remiprev/teamocil.git
-[submodule "foreign/zsh-fuzzy-match"]
-	path = foreign/zsh-fuzzy-match
-	url = https://github.com/tarruda/zsh-fuzzy-match
 [submodule "foreign/tmuxomatic"]
 	path = foreign/tmuxomatic
 	url = https://github.com/oxidane/tmuxomatic
+[submodule "foreign/tmux-resurrect"]
+	path = foreign/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "foreign/fzf"]
+	path = foreign/fzf
+	url = https://github.com/junegunn/fzf
 
 # personal
 [submodule ".mutt"]
