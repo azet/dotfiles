@@ -26,6 +26,12 @@
 [submodule "foreign/peco"]
 	path = foreign/peco
 	url = https://github.com/peco/peco.git
+[submodule "foreign/teamocil"]
+	path = foreign/teamocil
+	url = https://github.com/remiprev/teamocil.git
+[submodule "foreign/zsh-fuzzy-match"]
+	path = foreign/zsh-fuzzy-match
+	url = https://github.com/tarruda/zsh-fuzzy-match
 
 # personal
 [submodule ".mutt"]
