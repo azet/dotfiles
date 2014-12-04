@@ -32,6 +32,9 @@
 [submodule "foreign/zsh-fuzzy-match"]
 	path = foreign/zsh-fuzzy-match
 	url = https://github.com/tarruda/zsh-fuzzy-match
+[submodule "foreign/tmuxomatic"]
+	path = foreign/tmuxomatic
+	url = https://github.com/oxidane/tmuxomatic
 
 # personal
 [submodule ".mutt"]
