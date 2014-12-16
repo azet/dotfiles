@@ -8,8 +8,9 @@ machine-type (take a look at `bootstrap.conf`).
 
 ## Bootstrapping and configuration
 1. clone in `$HOME`.
-2. `./bootstrap` (**optional**: `./bootstrap [--desktop|--debug]`).
-3. (**optional**: configure `~/.mutt/accounts/*`, `~/.goobookrc`).
+2. `./bootstrap`.    
+    (**optional**: `./bootstrap [--desktop] [--debug]`)
+3. **optional**: configure `~/.mutt/accounts/*`, `~/.goobookrc`.
 
 ## TODO
 * write coherent setup routine in `bootstrap`
