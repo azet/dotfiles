@@ -1,12 +1,13 @@
 # dotfiles
 my personal environment settings (dotfiles et cetera).
 
-also bootstraps necessary packages.
+also bootstraps necessary packages depending on OS, distro and
+machine-type (take a look at `bootstrap.conf`).
 
 ## Bootstrapping and configuration
-1. clone in `$HOME`
-2. `./bootstrap`
-3. manually configure: `~/.mutt/accounts`, `~/.goobookrc`.
+1. clone in `$HOME`.
+2. `./bootstrap` (**optional**: `./bootstrap --desktop`).
+3. (**optional**: configure: `~/.mutt/accounts`, `~/.goobookrc`).
 
 ## License
 Some configurations are cherry-picked from across the internet. Original
