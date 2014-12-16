@@ -1,12 +1,12 @@
 # dotfiles
-bootstraps my personal environment and utilities in an OS agnostic manner.
+*bootstraps my personal environment and utilities in an OS agnostic manner.*
 
 currently there is built in support for Linux (Debian) and Mac OS X.
 
-bootstraps necessary packages depending on OS, distro and
-machine-type (take a look at `bootstrap.conf`). you might want to add 
-or remove some packages. some Linux-specific debugging tools require a 
-current 3.x Linux kernel.
+this project also bootstraps necessary packages depending on OS, distro
+and machine-type (take a look at `bootstrap.conf`). you might want to add
+or remove some packages. Linux-specific performance analysing and debugging
+tools may require a current 3.x-line Linux kernel.
 
 ## Bootstrapping and configuration
 1. clone in `$HOME`.
