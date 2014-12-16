@@ -1,15 +1,17 @@
 # dotfiles
-my personal environment settings (dotfiles et cetera).
+bootstraps my personal environment and utilities in an OS agnostic manner.
 
-currently supports: Linux (Debian), Mac OS X.
+currently there is built in support for Linux (Debian) and Mac OS X.
 
-also bootstraps necessary packages depending on OS, distro and
-machine-type (take a look at `bootstrap.conf`).
+bootstraps necessary packages depending on OS, distro and
+machine-type (take a look at `bootstrap.conf`). you might want to add 
+or remove some packages. some Linux-specific debugging tools require a 
+current 3.x Linux kernel.
 
 ## Bootstrapping and configuration
 1. clone in `$HOME`.
 2. `./bootstrap`.    
-    (**optional**: `./bootstrap [--desktop] [--debug]`)
+    **optional**: `./bootstrap [--desktop] [--debug]`
 3. **optional**: configure `~/.mutt/accounts/*`, `~/.goobookrc`.
 
 ## TODO
