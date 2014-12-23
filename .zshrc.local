@@ -4,7 +4,7 @@ export PATH=$PATH:$GOPATH/bin
 
 # debian specific
 export DEBEMAIL=azet@azet.org
-export FULLNAME="Aaron Zauner"
+export DEBFULLNAME="Aaron Zauner"
 
 # load useful zsh modules
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
