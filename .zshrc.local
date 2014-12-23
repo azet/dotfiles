@@ -24,6 +24,9 @@ alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
 
+## gist
+alias gist='gist-paste'
+
 ## Debian
 alias dquilt='QUILT_PATCHES=debian/patches quilt'
 
