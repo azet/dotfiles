@@ -43,3 +43,6 @@
 [submodule ".mutt"]
   path = .mutt
   url = git@github.com:azet/muttrc.git
+[submodule "foreign/dateutils"]
+	path = foreign/dateutils
+	url = https://github.com/hroptatyr/dateutils.git
