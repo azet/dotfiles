@@ -51,6 +51,7 @@ function install_pkgs() {
 }
 
 install_pkgs
+# add python pips / ruby gems
 
 git submodule update
 git submodule foreach git pull
