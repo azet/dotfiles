@@ -46,3 +46,6 @@
 [submodule "foreign/dateutils"]
 	path = foreign/dateutils
 	url = https://github.com/hroptatyr/dateutils.git
+[submodule "foreign/git-stats"]
+	path = foreign/git-stats
+	url = git@github.com:IonicaBizau/git-stats.git
