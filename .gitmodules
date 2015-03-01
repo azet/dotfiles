@@ -55,3 +55,6 @@
 [submodule "foreign/FlameGraph"]
 	path = foreign/FlameGraph
 	url = git@github.com:brendangregg/FlameGraph.git
+[submodule "foreign/pmu-tools"]
+	path = foreign/pmu-tools
+	url = git@github.com:andikleen/pmu-tools.git
