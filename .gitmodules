@@ -49,3 +49,6 @@
 [submodule "foreign/git-stats"]
 	path = foreign/git-stats
 	url = git@github.com:IonicaBizau/git-stats.git
+[submodule "foreign/perf-tools"]
+	path = foreign/perf-tools
+	url = git@github.com:brendangregg/perf-tools.git
