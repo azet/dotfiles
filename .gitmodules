@@ -52,3 +52,6 @@
 [submodule "foreign/perf-tools"]
 	path = foreign/perf-tools
 	url = git@github.com:brendangregg/perf-tools.git
+[submodule "foreign/FlameGraph"]
+	path = foreign/FlameGraph
+	url = git@github.com:brendangregg/FlameGraph.git
