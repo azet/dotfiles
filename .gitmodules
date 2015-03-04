@@ -58,3 +58,6 @@
 [submodule "foreign/pmu-tools"]
 	path = foreign/pmu-tools
 	url = git@github.com:andikleen/pmu-tools.git
+[submodule "foreign/hub"]
+	path = foreign/hub
+	url = https://github.com/github/hub.git
