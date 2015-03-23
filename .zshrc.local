@@ -16,6 +16,7 @@ alias la=ll
 
 ## gpg
 alias searchkey='gpg --search-keys'
+alias keysearch=searchkey
 
 ## git
 alias gp='git push'
