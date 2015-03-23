@@ -27,6 +27,9 @@ alias gpa='git push --all'
 ## gist
 alias gist='gist-paste'
 
+## pdf
+alias pdf='evince'
+
 ## Debian
 alias dquilt='QUILT_PATCHES=debian/patches quilt'
 
