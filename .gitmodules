@@ -67,3 +67,6 @@
 [submodule "foreign/patool"]
 	path = foreign/patool
 	url = https://github.com/wummel/patool.git
+[submodule "foreign/delve"]
+	path = foreign/delve
+	url = https://github.com/derekparker/delve.git
