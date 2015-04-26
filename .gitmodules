@@ -73,3 +73,6 @@
 [submodule "foreign/thefuck"]
 	path = foreign/thefuck
 	url = https://github.com/nvbn/thefuck.git
+[submodule "foreign/kexec-reboot"]
+	path = foreign/kexec-reboot
+	url = https://github.com/error10/kexec-reboot.git
