@@ -76,3 +76,6 @@
 [submodule "foreign/kexec-reboot"]
 	path = foreign/kexec-reboot
 	url = https://github.com/error10/kexec-reboot.git
+[submodule "foreign/distribution"]
+	path = foreign/distribution
+	url = https://github.com/philovivero/distribution.git
