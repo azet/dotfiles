@@ -79,3 +79,6 @@
 [submodule "foreign/distribution"]
 	path = foreign/distribution
 	url = https://github.com/philovivero/distribution.git
+[submodule "foreign/zindex"]
+	path = foreign/zindex
+	url = https://github.com/mattgodbolt/zindex.git
