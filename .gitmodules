@@ -82,3 +82,6 @@
 [submodule "foreign/zindex"]
 	path = foreign/zindex
 	url = https://github.com/mattgodbolt/zindex.git
+[submodule "foreign/hpenc"]
+	path = foreign/hpenc
+	url = https://github.com/vstakhov/hpenc.git
