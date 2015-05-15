@@ -85,3 +85,9 @@
 [submodule "foreign/hpenc"]
 	path = foreign/hpenc
 	url = https://github.com/vstakhov/hpenc.git
+[submodule "foreign/vagrant-peco"]
+	path = foreign/vagrant-peco
+	url = https://github.com/monochromegane/vagrant-peco.git
+[submodule "foreign/vagrant-global-status"]
+	path = foreign/vagrant-global-status
+	url = https://github.com/monochromegane/vagrant-global-status.git
