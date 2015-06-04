@@ -91,3 +91,6 @@
 [submodule "foreign/vagrant-global-status"]
 	path = foreign/vagrant-global-status
 	url = https://github.com/monochromegane/vagrant-global-status.git
+[submodule "foreign/peda"]
+	path = foreign/peda
+	url = https://github.com/longld/peda.git
