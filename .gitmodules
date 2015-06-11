@@ -94,3 +94,6 @@
 [submodule "foreign/peda"]
 	path = foreign/peda
 	url = https://github.com/longld/peda.git
+[submodule "foreign/vim-flake8"]
+	path = foreign/vim-flake8
+	url = https://github.com/nvie/vim-flake8.git
