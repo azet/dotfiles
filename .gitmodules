@@ -1,4 +1,3 @@
-# foreign
 [submodule "foreign/vim-janus"]
   path = foreign/vim-janus
   url = https://github.com/carlhuda/janus.git
@@ -38,11 +37,6 @@
 [submodule "foreign/fzf"]
 	path = foreign/fzf
 	url = https://github.com/junegunn/fzf
-
-# personal
-[submodule ".mutt"]
-  path = .mutt
-  url = git@github.com:azet/muttrc.git
 [submodule "foreign/dateutils"]
 	path = foreign/dateutils
 	url = https://github.com/hroptatyr/dateutils.git
