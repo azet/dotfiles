@@ -5,20 +5,24 @@ currently there is built in support for Linux (Debian) and Mac OS X.
 
 this project also bootstraps necessary packages depending on OS, distro
 and machine-type (take a look at `bootstrap.conf`). you might want to add
-or remove some packages. Linux-specific performance analysing and debugging
+or remove some packages. Linux-specific performance analysis and debugging
 tools may require a current 3.x-line Linux kernel.
 
 ## Bootstrapping and configuration
 1. clone in `$HOME`.
-2. `./bootstrap`.    
-    **optional**: `./bootstrap [--desktop] [--debug]`
+2. `./bootstrap [--desktop] [--debug]`.
 3. **optional**: configure `~/.mutt/accounts/*`, `~/.goobookrc`.
 
 ## TODO
 * write coherent setup routine in `bootstrap`
+* qtile for xfce4
 * 'Enterprise Linux' (CentOS, RHEL, SL,..) packages
 * FreeBSD specifics & ports
 * Solaris specifics & packages
+
+## OS/Distro Notes
+### Linux (Debian)
+* Window Manager: xfce4 customized
 
 ## License
 Some configurations are cherry-picked from across the internet. Original
