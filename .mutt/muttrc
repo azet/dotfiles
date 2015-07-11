@@ -1,0 +1,6 @@
+source ~/.mutt/accounts/gmail
+source ~/.mutt/sidebar
+source ~/.mutt/defaults
+source ~/.mutt/colors
+source ~/.mutt/sorting
+source ~/.mutt/macros

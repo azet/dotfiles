@@ -1,0 +1,3 @@
+macro index \C1 '<change-folder>imaps://imap.gmail.com:933<enter>'
+macro index,pager <PageDown> <half-down>
+macro index,pager <PageUp> <half-up>

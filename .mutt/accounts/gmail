@@ -1,0 +1,37 @@
+# identitah
+set realname="Aaron Zauner"
+set from="azet@azet.org"
+set signature='~/.mutt/accounts/gmail.sig'
+set imap_user="$from"
+set imap_pass=xxxx
+set pgp_sign_as=0xFDB9B5D5
+set pgp_autosign=yes
+
+# imap
+set folder      = "imaps://imap.gmail.com:993"
+set spoolfile   = "+INBOX"
+set postponed   = "+[Gmail]/Drafts"
+set trash       = "+[Gmail]/Trash"
+set mbox        = +INBOX
+set record      = "=[Gmail]/Sent Mail"
+save-hook       .* "=[Gmail]/Spam"
+set copy        = no
+
+# smtp
+set smtp_url = "smtp://azet@azet.org@smtp.gmail.com:587/"
+set smtp_pass = "xxx"
+
+# sec. related
+set move = no
+set imap_keepalive = 900
+
+set nouse_domain
+
+# search imap (prefix =b)
+set simple_search="=b %s"
+
+# query via google contacts
+set query_command="goobook query '%s'"
+bind editor <Tab> complete-query
+macro index,pager a "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+

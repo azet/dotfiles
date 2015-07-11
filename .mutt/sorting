@@ -1,0 +1,5 @@
+# sorting gmail like
+set index_format = "%4C %Z %{%b %d %R} %-15.15L (%4l) %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+
