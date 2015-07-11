@@ -38,8 +38,7 @@ alias dquilt='QUILT_PATCHES=debian/patches quilt'
 ## kexec
 alias kreboot='kexec-reboot'
 
-
-# setup aliases for local helper scripts
+## set-up aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do
   name=$(basename $file:r)
   alias $name=$file
