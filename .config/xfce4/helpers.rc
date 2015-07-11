@@ -1,0 +1,5 @@
+TerminalEmulator=xfce4-terminal
+MailReader=mutt
+FileManager=nautilus
+
+WebBrowser=google-chrome
