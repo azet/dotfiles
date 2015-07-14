@@ -1,4 +1,7 @@
-set background=dark
 color molokai
 let g:rehash256 = 1
+set background=dark
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
