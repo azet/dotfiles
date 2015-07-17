@@ -1,3 +1,6 @@
+[core]
+  autocrlf = true
+  whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent
 [user]
   name = Aaron Zauner
   email = azet@azet.org
