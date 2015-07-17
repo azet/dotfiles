@@ -1,14 +1,28 @@
-[core]
-  autocrlf = true
-  whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent
 [user]
   name = Aaron Zauner
   email = azet@azet.org
   signingkey = 0xFDB9B5D5
+[core]
+  autocrlf = input
+  whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,cr-at-eol,trailing-space
 [push]
   default = current
 [http]
   sslVerify
 [color]
   ui = auto
-
+[color "branch"]
+  meta = reverse blue white
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = bold yellow
+  frag = bold blue
+  new = yellow
+  old = green
+  whitespace = reverse white dim
+[color "status"]
+  added = reverse yellow
+  changed = yellow
+  untracked = ul cyan
+  branch = cyan
