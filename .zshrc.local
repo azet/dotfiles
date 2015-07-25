@@ -1,3 +1,6 @@
+# globals
+export __dot_foreign_path=$HOME/dotfiles/foreign
+
 # extend various PATHs and set global variables
 ## Go
 export GOPATH=$HOME/go
@@ -40,7 +43,7 @@ alias chrome='google-chrome'
 alias dquilt='QUILT_PATCHES=debian/patches quilt'
 
 ## kexec
-alias kreboot='kexec-reboot'
+alias kreboot='${__dot_foreign_path}/kexec-reboot/kexec-reboot -vi'
 
 ## screenshot
 alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
