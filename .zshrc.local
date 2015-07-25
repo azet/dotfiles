@@ -18,6 +18,12 @@ export DEBFULLNAME="Aaron Zauner"
 alias ll='ls -larth'
 alias la=ll
 
+## apt
+alias agi='sudo apt-get install -y'
+alias agr='sudo apt-get remove -y'
+alias agu='sudo apt-get update'
+alias aguu='sudo apt-get upgrade'
+
 ## gpg
 alias searchkey='gpg --search-keys'
 alias keysearch=searchkey
