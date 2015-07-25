@@ -43,13 +43,13 @@ alias dquilt='QUILT_PATCHES=debian/patches quilt'
 alias kreboot='kexec-reboot'
 
 ## 'open' shortcut
-function __open() {
+function open() {
   case ${1} in
     *.html)   chrome ${1} ;;
     *.pdf)    pdf ${1}    ;;
     *)        vim ${1}    ;;
   esac
-}; alias open=__open
+}
 
 ## set-up aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do
