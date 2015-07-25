@@ -25,9 +25,12 @@ alias keysearch=searchkey
 ## git
 alias gp='git push'
 alias gc='git clone'
-alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
+alias gpf='git push --force'
+alias glp='git log --pretty=oneline'
+alias glpd='git log --graph --all --decorate'
+alias glpp='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 alias checkout='git checkout'
 
 ## gist
