@@ -24,3 +24,12 @@ mono	body		bold			((((ht|f)tps?)|mailto):(//)?[^\ >"\t]*|www\.[-a-z0-9.]+)[^\ .,
 mono	body		bold			"[-a-z_0-9.]+@[-a-z_0-9.]+"
 mono	body		bold			"^Good signature"
 mono	body		bold			"^Bad signature from.*"
+
+# GPG
+color body          red             default         "(BAD signature)"
+color body          brightmagenta   default         "(Good signature)"
+color body          brightblack     default         "^gpg: Good signature .*"
+color body          brightyellow    default         "^gpg: "
+color body          brightyellow    red             "^gpg: BAD signature from.*"
+mono  body          bold                            "^gpg: Good signature"
+mono  body          bold                            "^gpg: BAD signature from.*"
