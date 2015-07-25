@@ -1,6 +1,5 @@
 # globals
 export __dot_foreign_path=$HOME/dotfiles/foreign
-export RAND=$RANDOM
 
 # extend various PATHs and set global variables
 ## Go
