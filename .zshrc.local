@@ -42,6 +42,9 @@ alias dquilt='QUILT_PATCHES=debian/patches quilt'
 ## kexec
 alias kreboot='kexec-reboot'
 
+## screenshot
+alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
+
 ## 'open' shortcut
 function open() {
   case ${1} in
