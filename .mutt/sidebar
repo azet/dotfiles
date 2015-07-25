@@ -1,11 +1,11 @@
 # sidebar settings
 set sidebar_width=25
 set sidebar_visible=yes
-set sidebar_delim='||'
+set sidebar_delim=' [] '
 #set sidebar_sort=no
 
 # color of folders with new mail
-color sidebar_new green default
+color sidebar_new green black
 
 # ctrl-n, ctrl-p to select next, prev folder
 # ctrl-o to open selected folder
