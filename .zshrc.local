@@ -32,6 +32,9 @@ alias gist='gist-paste'
 ## pdf
 alias pdf='evince'
 
+## chrome
+alias chrome='google-chrome'
+
 ## Debian
 alias dquilt='QUILT_PATCHES=debian/patches quilt'
 
