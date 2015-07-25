@@ -50,7 +50,10 @@ function open() {
   case ${1} in
     *.html)   chrome ${1} ;;
     *.pdf)    pdf ${1}    ;;
-    *)        vim ${1}    ;;
+    *)
+       [[ $(file -bi ${1}) == *binary* ]] && return 1
+       vim ${1}
+    ;;
   esac
 }
 
