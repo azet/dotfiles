@@ -1,7 +1,7 @@
 # globals
 export __dot_foreign_path=$HOME/dotfiles/foreign
 
-# extend various PATHs and set global variables
+# extend various PATHs
 ## Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -51,9 +51,15 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 ## 'open' shortcut
 function open() {
   case ${1} in
-    *.html)   chrome ${1}                                     ;;
-    *.pdf)    pdf ${1}                                        ;;
-    *)        [[ $(file -bi ${1}) == *binary* ]] || vim ${1}  ;;
+    *.html)     chrome ${1}       ;;
+    *.pdf)      pdf ${1}          ;;
+    *.png  |\
+    *.jpg  |\
+    *.jpeg |\
+    *.gif)      ristretto ${1} &  ;;
+    *)
+      [[ $(file -bi ${1}) == *binary* ]] || vim ${1}
+     ;;
   esac
 }
 
