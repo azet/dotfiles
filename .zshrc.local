@@ -25,6 +25,7 @@ alias gc='git clone'
 alias glp='git log --pretty=oneline'
 alias gpt='git push --tags'
 alias gpa='git push --all'
+alias checkout='git checkout'
 
 ## gist
 alias gist='gist-paste'
