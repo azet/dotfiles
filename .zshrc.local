@@ -58,17 +58,17 @@ alias kreboot='sudo ${__dot_foreign_path}/kexec-reboot/kexec-reboot -vi'
 alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 
 ## 'open' shortcut
-function open() {
+[[ $(uname) == "Darwin" ]] || function open() {
   case ${1} in
-    *.html)     chrome ${1}       ;;
-    *.pdf)      pdf ${1}          ;;
-    *.png  |\
-    *.jpg  |\
-    *.jpeg |\
-    *.gif)      ristretto ${1} &  ;;
-    *)
-      [[ $(file -bi ${1}) == *binary* ]] || vim ${1}
-     ;;
+  *.html)     chrome ${1}       ;;
+  *.pdf)      pdf ${1}          ;;
+  *.png  |\
+  *.jpg  |\
+  *.jpeg |\
+  *.gif)      ristretto ${1} &  ;;
+  *)
+    [[ $(file -bi ${1}) == *binary* ]] || vim ${1}
+  ;;
   esac
 }
 
