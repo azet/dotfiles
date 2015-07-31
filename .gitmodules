@@ -94,3 +94,6 @@
 [submodule "foreign/uberimg"]
 	path = foreign/uberimg
 	url = https://github.com/infinity0/uberimg.git
+[submodule "foreign/magic-wormhole"]
+	path = foreign/magic-wormhole
+	url = https://github.com/warner/magic-wormhole
