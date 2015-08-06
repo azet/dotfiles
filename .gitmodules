@@ -97,3 +97,6 @@
 [submodule "foreign/magic-wormhole"]
 	path = foreign/magic-wormhole
 	url = https://github.com/warner/magic-wormhole
+[submodule "foreign/httpie"]
+	path = foreign/httpie
+	url = https://github.com/jkbrzt/httpie.git
