@@ -1,4 +1,3 @@
-set cmd:ls-default "ls -larth"
 set cmd:queue-parallel 4
 set cmd:remote-completion yes
 set cmd:set-term-status yes
@@ -17,7 +16,7 @@ set ftp:ssl-protect-fxp yes
 set ftp:fxp-passive-source yes
 set ftp:stat-interval 3
 set ftp:use-stat-for-list yes
-set ftp:list-options "-larth"
+set ftp:list-options "-a"
 
 set mirror:parallel-transfer-count 4
 
