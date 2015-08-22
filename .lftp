@@ -1,0 +1,38 @@
+set cmd:ls-default "ls -larth"
+set cmd:queue-parallel 4
+set cmd:remote-completion yes
+set cmd:set-term-status yes
+
+set dns:SRV-query yes
+
+set ftp:use-utf8 yes
+set ftp:charset "UTF-8"
+set ftp:verify-address yes
+set ftp:verify-port yes
+set ftp:use-fxp yes
+set ftp:ssl-use-ccc no
+set ftp:ssl-protect-data yes
+set ftp:ssl-protect-list yes
+set ftp:ssl-protect-fxp yes
+set ftp:fxp-passive-source yes
+set ftp:stat-interval 3
+set ftp:use-stat-for-list yes
+set ftp:list-options "-larth"
+
+set mirror:parallel-transfer-count 4
+
+set file:charset utf-8
+
+set net:timeout 3
+set net:connection-takeover yes
+set net:persist-retries 5
+set net:reconnect-interval-base 5
+set net:reconnect-interval-max 20
+
+set sftp:charset "utf-8"
+
+set ssl:check-hostname yes
+set ssl:verify-certificate yes
+
+set xfer:eta-terse yes
+set xfer:max-redirections 0
