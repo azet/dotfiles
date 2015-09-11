@@ -9,6 +9,9 @@ export __dot_foreign_path=$HOME/dotfiles/foreign
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+## packer
+export PATH=$PATH:$HOME/packer
+
 ## debian specific
 export DEBEMAIL=azet@azet.org
 export DEBFULLNAME="Aaron Zauner"
