@@ -5,6 +5,9 @@ zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 export __dot_foreign_path=$HOME/dotfiles/foreign
 
 # PATHs and general global variables
+## sbin
+export PATH=$PATH:/usr/sbin
+
 ## Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
