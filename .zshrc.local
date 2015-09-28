@@ -84,7 +84,12 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
   esac
 }
 
-## set-up aliases for local helper scripts
+# external cli command completion support
+## Google Compute Engine
+source "/home/azet/google-cloud-sdk/path.zsh.inc"
+source "/home/azet/google-cloud-sdk/completion.zsh.inc"
+
+# set-up aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do
   name=$(basename $file:r)
   alias $name=$file
