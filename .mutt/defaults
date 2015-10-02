@@ -56,7 +56,9 @@ set forward_decode                   # decode when forwarding
     set forw_format="(forw) %s"
     set index_format="%4C %Z %[!%y%m%d] %-17.17F %s"
     set pager_format="%S [%C/%T] %n (%l) %s"
-    set status_format="%v: %f (%s) [%M/%m] [N=%n,*=%t,new=%b]"
+    #set status_format="%v: %f (%s) [%M/%m] [N=%n,*=%t,new=%b]"
+    set status_format=" %h: %f (msgs:%?M?%M/?%m %l%?n? new:%n?%?o? old:%o?%?d? del:%d?%?F? flag:%F?%?t? tag:%t?%?p? post:%p?%?b? inc:%b?%?l??) %> %_v "
+
  
 set imap_check_subscribed = yes
 set imap_list_subscribed = no ## use "T" (shift+t) to list mailboxes that are not subscribed...
@@ -65,6 +67,10 @@ set imap_idle = yes # keep the imap connection open...
 # Show the "text/plain" part *before* the "text/html" part:
   alternative_order text/plain text/html
   auto_view text/html
+  auto_view application/pgp-encrypted
+  auto_view application/pgp-keys
+  auto_view application/pgp-signature
+  auto_view text/html application/msword
  
 # KEY BINDINGS
   bind index zt current-top
