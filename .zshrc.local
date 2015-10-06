@@ -33,6 +33,7 @@ alias aguu='sudo apt-get upgrade'
 ## gpg
 alias keysearch=searchkey
 alias searchkey='gpg --search-keys'
+alias sign='gpg --clearsign'
 alias keyshow=showkey
 function showkey() {
   [[ -z "${1}" ]] && return 1
