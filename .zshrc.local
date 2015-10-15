@@ -1,6 +1,31 @@
 # load useful zsh modules
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
+# userland-agnostic OS and distro detection.
+# comes in handy sometimes e.g. with minimal
+# installations there's no `lsb_release` etc..
+function detect_os() {
+  case $(uname) in
+  *Linux*)  printf "linux"   ;;
+  *Darwin*) printf "macosx"  ;;
+  *SunOS*)  printf "solaris" ;;
+  *BSD*)    printf "bsd"     ;;
+  esac
+  return
+}
+
+function detect_distro() {
+  case $(cat /etc/*release*) in
+  *Debian* | *Ubuntu*)
+    printf "debian"
+  ;;
+  *"Red Hat"* | *CentOS*)
+    printf "rh"
+  ;;
+  esac
+  return
+}
+
 # vi line editing mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -14,6 +39,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # globals relating to dotfiles
+export __dot_operating_system="$(detect_os)"
+export __dot_os_distribution="$(detect_distro)"
 export __dot_foreign_path=$HOME/dotfiles/foreign
 
 # PATHs and general global variables
