@@ -24,6 +24,7 @@ export DEBFULLNAME="Aaron Zauner"
 alias ll='ls -larthik'
 alias l=ll
 alias la=ll
+alias v='less'
 
 ## buitins, coreutils, system tools
 alias f='file'
@@ -31,6 +32,8 @@ alias s='find'
 alias top='htop || top'
 alias systop='glances'
 alias load='sar 1 3'
+alias net='getent networks; ip netconf; ip neigh; ip route; ip a'
+alias id='id; getent passwd ${UID}'
 
 ## apt
 alias agi='sudo apt-get install -y'
