@@ -28,7 +28,6 @@ alias la=ll
 ## buitins, coreutils, system tools
 alias f='file'
 alias s='find'
-alias scroll=s
 alias top='htop || top'
 alias systop='glances'
 alias load='sar 1 3'
