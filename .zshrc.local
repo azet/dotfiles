@@ -44,7 +44,8 @@ alias s='find'
 alias top='htop || top'
 alias systop='glances'
 alias load='sar 1 3'
-alias net='getent networks; echo; ip netconf; echo; ip neigh; ip route; ip a'
+alias net='getent networks; echo; ip netconf; \
+           echo; ip neigh; echo; ip route; echo; ip a'
 alias id='id; echo; getent passwd ${UID}'
 
 ## Debian
