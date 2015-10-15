@@ -39,7 +39,11 @@ alias load='sar 1 3'
 alias net='getent networks; ip netconf; ip neigh; ip route; ip a'
 alias id='id; getent passwd ${UID}'
 
-## apt
+## Debian
+### packaging
+alias dquilt='QUILT_PATCHES=debian/patches quilt'
+
+### apt
 alias agi='sudo apt-get install -y'
 alias agr='sudo apt-get remove -y'
 alias agu='sudo apt-get update'
@@ -76,8 +80,9 @@ alias pdf='evince'
 ## chrome
 alias chrome='google-chrome'
 
-## Debian
-alias dquilt='QUILT_PATCHES=debian/patches quilt'
+## sublime text
+alias sublime='~/sublime/sublime_text &'
+alias sublimetext=sublime
 
 ## kexec
 alias kreboot='sudo ${__dot_foreign_path}/kexec-reboot/kexec-reboot -vi'
