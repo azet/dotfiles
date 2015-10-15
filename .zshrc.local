@@ -146,8 +146,13 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 source "/home/azet/google-cloud-sdk/path.zsh.inc"
 source "/home/azet/google-cloud-sdk/completion.zsh.inc"
 
-# zsh syntax highlighting
+# special community maintained zsh features
+## history substring search
+source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+
+## syntax highlighting
 source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 
 # set-up aliases for local helper scripts
 for file ($HOME/dotfiles/aliases/*); do

@@ -103,3 +103,6 @@
 [submodule "foreign/zsh-syntax-highlighting"]
 	path = foreign/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "foreign/zsh-history-substring-search"]
+	path = foreign/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
