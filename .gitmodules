@@ -100,3 +100,6 @@
 [submodule "foreign/httpie"]
 	path = foreign/httpie
 	url = https://github.com/jkbrzt/httpie.git
+[submodule "foreign/zsh-syntax-highlighting"]
+	path = foreign/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

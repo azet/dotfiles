@@ -117,7 +117,7 @@ alias pdf='evince'
 alias chrome='google-chrome'
 
 ## sublime text
-alias sublime='~/sublime/sublime_text &'
+alias sublime='{ ~/sublime/sublime_text & } || exit 1'
 alias sublimetext=sublime
 
 ## kexec
