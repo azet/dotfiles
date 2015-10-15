@@ -1,6 +1,10 @@
 # load useful zsh modules
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
+# start in vi line-editing mode
+bindkey -v
+export KEYTIMEOUT=# Use vim cli mode
+
 # globals relating to dotfiles
 export __dot_foreign_path=$HOME/dotfiles/foreign
 
