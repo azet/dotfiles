@@ -21,7 +21,8 @@ export DEBFULLNAME="Aaron Zauner"
 
 # aliases
 ## navigation
-alias ll='ls -larth'
+alias ll='ls -larthik'
+alias l=ll
 alias la=ll
 
 ## buitins, coreutils, system tools
