@@ -1,9 +1,17 @@
 # load useful zsh modules
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
-# start in vi line-editing mode
+# vi line editing mode
 bindkey -v
-export KEYTIMEOUT=# Use vim cli mode
+export KEYTIMEOUT=1
+
+## subtle vi indication
+function zle-keymap-select {
+  RPS1="%K{red}%F{black} :: %f%F{blue}vi-mode%f%F{black} :: %f%k"
+  zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # globals relating to dotfiles
 export __dot_foreign_path=$HOME/dotfiles/foreign
