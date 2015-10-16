@@ -1,6 +1,22 @@
 # load useful zsh modules
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
+# autoload builtin functions
+## cli prediction
+autoload predict-on
+zstyle ':predict' verbose true
+zle -N predict-on
+
+## periodic execution
+PERIOD=30; periodic() {
+  echo ${HOST} $(uptime)
+}
+autoload periodic
+
+autoload edit-command-line
+bindkey '^X' edit-command-line
+zle -N edit-command-line
+
 # userland-agnostic OS and distro detection.
 # comes in handy sometimes e.g. with minimal
 # installations there's no `lsb_release` etc..
@@ -30,6 +46,19 @@ function detect_distro() {
 # vi line editing mode
 bindkey -v
 export KEYTIMEOUT=1
+
+## remap important key-bindings
+bindkey '^L' clear-screen
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^B' forward-word
+bindkey '^D' backward-word
+bindkey '^P' up-line-or-history
+bindkey '^N' down-line-or-history
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+bindkey '^O' copy-prev-shell-word
 
 ## subtle vi indication
 function zle-keymap-select {
