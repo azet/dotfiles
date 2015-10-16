@@ -84,6 +84,12 @@ export PATH=$PATH:$GOPATH/bin
 ## packer
 export PATH=$PATH:$HOME/packer
 
+## intel parallel xe suite (intel compiler etc.)
+[[ -d /opt/intel/bin/ ]] && export PATH=$PATH:/opt/intel/bin
+
+## intel vtune
+[[ -d /opt/intel/vtune_amplifier_xe/bin64 ]] && export PATH=$PATH:/opt/intel/vtune_amplifier_xe/bin64
+
 ## debian specific
 export DEBEMAIL=azet@azet.org
 export DEBFULLNAME="Aaron Zauner"
