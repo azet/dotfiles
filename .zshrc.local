@@ -65,6 +65,7 @@ alias ll='ls -larthik'
 alias l=ll
 alias la=ll
 alias v='less'
+alias h='http'
 
 ## buitins, coreutils, system tools
 alias f='file'
