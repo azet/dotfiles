@@ -6,7 +6,9 @@ currently there is built in support for Linux (Debian) and Mac OS X.
 this project also bootstraps necessary packages depending on OS, distro
 and machine-type (take a look at `bootstrap.conf`). you might want to add
 or remove some packages. Linux-specific performance analysis and debugging
-tools may require a current 3.x-line Linux kernel.
+tools may require a current 3.x-line Linux kernel. I currently run a
+[customized 4.2.x
+kernel](https://gist.github.com/azet/c3d83ac6307f0938686a).
 
 ## Bootstrapping and configuration
 1. clone in `$HOME`.
