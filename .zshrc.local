@@ -68,6 +68,7 @@ bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^O' copy-prev-shell-word
 bindkey '^X' predict-toggle
+bindkey '^[OM' send-break
 
 # esc+e edits current line in `vim(1)`
 bindkey -M vicmd e edit-command-line
