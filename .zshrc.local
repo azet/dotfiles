@@ -3,18 +3,22 @@ zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
 # autoload builtin functions
 ## cli prediction
-autoload predict-on
+autoload predict-on predict-off
+function predict-toggle() {
+  # via https://unix.stackexchange.com/questions/56281/command-line-prediction
+  # good idea actually to use this toggle function, can be
+  # used in other places as well to toggle application specific
+  ((predict_on=1-predict_on)) && predict-on || predict-off
+}
+zle -N predict-toggle
+zstyle ':predict' toggle true
 zstyle ':predict' verbose true
-zle -N predict-on
 
 ## periodic execution
 PERIOD=30; periodic() {
   echo ${HOST} $(uptime)
 }
 autoload periodic
-
-# esc+e edits current line in vim(1)
-bindkey -M vicmd e edit-command-line
 
 # userland-agnostic OS and distro detection.
 # comes in handy sometimes e.g. with minimal
@@ -63,6 +67,10 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^O' copy-prev-shell-word
+bindkey '^X' predict-toggle
+
+# esc+e edits current line in `vim(1)`
+bindkey -M vicmd e edit-command-line
 
 ## subtle vi indication
 function zle-keymap-select {
