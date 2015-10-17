@@ -183,7 +183,7 @@ alias amend='git commit -a --amend'
 alias hub='${__dot_foreign_path}/hub/hub'
 alias github=hub
 function github_page() {
-  [[ -d ".git/" && $(grep 'github' .git/config) ]] || return 1
+  [ -d ".git/" && $(grep 'github' .git/config) ] || return 1
   hub browse
 }
 alias web='eval github_page'
