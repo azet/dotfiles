@@ -73,6 +73,10 @@ export __dot_operating_system="$(detect_os)"
 export __dot_os_distribution="$(detect_distro)"
 export __dot_foreign_path="${HOME}/dotfiles/foreign"
 
+## indicate if we're mobile (not connected to drives)
+numblk=$(ls /dev/sd* | wc -w)
+(( ${numblk} > 8 )) && export __mount__mobile=1
+
 # PATHs and general global variables
 ## sbin
 export PATH=$PATH:/usr/sbin
