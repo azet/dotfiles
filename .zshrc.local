@@ -103,8 +103,11 @@ export DEBFULLNAME="Aaron Zauner"
 alias ll='ls -larthik'
 alias l=ll
 alias la=ll
+
+## line tools
 alias v='less'
 alias h='http'
+alias e='echo'
 
 ## buitins, coreutils, system tools
 alias f='file'
