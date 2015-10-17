@@ -81,6 +81,14 @@ function zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+## shell history settings
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history extended_history hist_allow_clobber            \
+       inc_append_history share_history hist_expire_dups_first       \
+       hist_lex_words hist_verify hist_ignore_dups hist_ignore_space
+
 ## indicate if we're mobile (not connected to drives)
 [[ ${__dot_operating_system} == "linux" ]] && {
   numblk=$(ls /dev/sd* | wc -w)
@@ -119,6 +127,9 @@ alias v='less'
 alias h='http'
 alias e='echo'
 alias p=e
+
+## history
+alias history='history -i'
 
 ## buitins, coreutils, system tools
 alias f='file'
