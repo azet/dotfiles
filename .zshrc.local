@@ -168,6 +168,15 @@ alias push='gp'
 alias pull='git pull'
 alias amend='git commit -a --amend'
 
+## github
+alias hub='${__dot_foreign_path}/hub/hub'
+alias github=hub
+function github_page() {
+  [[ -d ".git/" && $(grep 'github' .git/config) ]] || return 1
+  hub browse
+}
+alias web='eval github_page'
+
 ## gist
 alias gist='gist-paste'
 
