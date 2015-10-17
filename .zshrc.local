@@ -151,6 +151,7 @@ alias glpp='git log --graph --abbrev-commit --decorate --date=relative --format=
 alias checkout='git checkout'
 alias push='gp'
 alias pull='git pull'
+alias amend='git commit -a --amend'
 
 ## gist
 alias gist='gist-paste'
