@@ -106,6 +106,13 @@ export PATH=$PATH:$GOPATH/bin
 ## packer
 export PATH=$PATH:$HOME/packer
 
+## PATH addition for *BSD /usr/local and Homebrew (OSX)
+[[ ${__dot_operating_system} == "macosx" || \
+   ${__dot_operating_system} == "bsd" ]] && {
+  export PATH=$PATH:/usr/local/bin
+  export PATH=$PATH:/usr/local/sbin
+}
+
 ## intel parallel xe suite (intel compiler etc.)
 [[ -d /opt/intel/bin/ ]] && export PATH=$PATH:/opt/intel/bin
 
