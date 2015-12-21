@@ -1,3 +1,4 @@
+# settings
 [user]
   name = Aaron Zauner
   email = azet@azet.org
@@ -9,6 +10,10 @@
   default = current
 [http]
   sslVerify
+[diff]
+  algorithm = patience
+
+# colors
 [color]
   ui = auto
 [color "branch"]

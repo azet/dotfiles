@@ -188,6 +188,8 @@ alias checkout='git checkout'
 alias push='gp'
 alias pull='git pull'
 alias amend='git commit -a --amend'
+alias merge-diff='git diff --name-only --diff-filter=U'
+alias hist-diff='git diff --histogram --numstat'
 
 ## github
 alias hub='${__dot_foreign_path}/hub/hub'
