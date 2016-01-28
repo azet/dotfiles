@@ -106,3 +106,6 @@
 [submodule "foreign/zsh-history-substring-search"]
 	path = foreign/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
+[submodule "foreign/kpatch"]
+	path = foreign/kpatch
+	url = https://github.com/dynup/kpatch.git
