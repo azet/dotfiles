@@ -109,3 +109,6 @@
 [submodule "foreign/kpatch"]
 	path = foreign/kpatch
 	url = https://github.com/dynup/kpatch.git
+[submodule "foreign/ctypes.sh"]
+	path = foreign/ctypes.sh
+	url = https://github.com/taviso/ctypes.sh.git
