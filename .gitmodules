@@ -112,3 +112,6 @@
 [submodule "foreign/ctypes.sh"]
 	path = foreign/ctypes.sh
 	url = https://github.com/taviso/ctypes.sh.git
+[submodule "foreign/teneo"]
+	path = foreign/teneo
+	url = https://github.com/ahf/teneo.git
