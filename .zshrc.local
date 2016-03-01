@@ -195,10 +195,11 @@ alias hist-diff='git diff --histogram --numstat'
 alias hub='${__dot_foreign_path}/hub/hub'
 alias github=hub
 function github_page() {
-  [ -d ".git/" && $(grep 'github' .git/config) ] || return 1
-  hub browse
+  [[ -d ".git/" && $(grep 'github' .git/config) ]] || return 1
+  hub browse &>/dev/null
 }
 alias web='eval github_page'
+alias browse=web
 
 ## gist
 alias gist='gist-paste'
