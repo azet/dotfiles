@@ -15,7 +15,7 @@ zstyle ':predict' toggle true
 zstyle ':predict' verbose true
 
 ## periodic execution
-PERIOD=30; periodic() {
+PERIOD=120; periodic() {
   echo ${HOST} $(uptime)
 }
 autoload periodic
@@ -51,7 +51,8 @@ export __dot_operating_system="$(detect_os)"
 export __dot_os_distribution="$(detect_distro)"
 export __dot_foreign_path="${HOME}/dotfiles/foreign"
 
-# vi line editing mode
+# direct command line support for vi/vim
+## vi line editing mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -70,10 +71,10 @@ bindkey '^O' copy-prev-shell-word
 bindkey '^X' predict-toggle
 bindkey '^[OM' send-break
 
-# esc+e edits current line in `vim(1)`
+## esc+e edits current line in `vim(1)`
 bindkey -M vicmd e edit-command-line
 
-## subtle vi indication
+## subtle command lin `vim(1)` indication
 function zle-keymap-select {
   RPS1="%K{red}%F{black} :: %f%F{blue}vi-mode%f%F{black} :: %f%k"
   zle reset-prompt
@@ -81,19 +82,14 @@ function zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-## shell history settings
+# shell history settings
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt append_history extended_history hist_allow_clobber            \
-       inc_append_history share_history hist_expire_dups_first       \
+# (non-default) shell options
+setopt append_history extended_history hist_allow_clobber             \
+       inc_append_history share_history hist_expire_dups_first        \
        hist_lex_words hist_verify hist_ignore_dups hist_ignore_space
-
-## indicate if we're mobile (not connected to drives)
-[[ ${__dot_operating_system} == "linux" ]] && {
-  numblk=$(ls /dev/sd* | wc -w)
-  (( ${numblk} > 8 )) && export __mount__mobile=1
-}
 
 # PATHs and general global variables
 ## sbin
@@ -124,6 +120,17 @@ export DEBEMAIL=azet@azet.org
 export DEBFULLNAME="Aaron Zauner"
 
 # aliases
+## scripted aliases
+#> each alias is a Lua file in the `aliases/` directory
+#> they are aliased to their filename, excluding suffix
+#> these are actual scripts/programs that may contain
+#> any level of sophistication. LuaJIT is used even
+#> when not necessary to keep consistency.
+for file ($HOME/dotfiles/aliases/*); do
+  name=$(basename $file:r)
+  alias $name=$file
+done
+
 ## navigation
 alias ll='ls -larthik'
 alias l=ll
@@ -239,12 +246,6 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 ## history substring search and syntax highlighting
 source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
 source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# set-up aliases for local helper scripts
-for file ($HOME/dotfiles/aliases/*); do
-  name=$(basename $file:r)
-  alias $name=$file
-done
 
 # external cli command completion support
 ## Google Compute Engine
