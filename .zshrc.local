@@ -135,6 +135,8 @@ done
 alias ll='ls -larthik'
 alias l=ll
 alias la=ll
+alias lsgrep=lgrep
+alias lgrep="ls | grep"
 
 ## line tools
 alias v='less'
