@@ -4,6 +4,7 @@
   email = azet@azet.org
   signingkey = 0xFDB9B5D5
 [core]
+  abbrev = 12 # LKLM-style
   autocrlf = input
   whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,cr-at-eol,trailing-space
 [push]
@@ -12,6 +13,8 @@
   sslVerify
 [diff]
   algorithm = patience
+[pretty]
+  fixes = Fixes: %h (\"%s\")
 
 # colors
 [color]
