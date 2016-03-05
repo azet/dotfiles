@@ -115,3 +115,6 @@
 [submodule "foreign/teneo"]
 	path = foreign/teneo
 	url = https://github.com/ahf/teneo.git
+[submodule "foreign/cpustat"]
+	path = foreign/cpustat
+	url = https://github.com/uber-common/cpustat
