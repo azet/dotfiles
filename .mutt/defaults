@@ -109,3 +109,6 @@ set imap_idle = yes # keep the imap connection open...
   set message_cachedir=~/.cache/mutt/
 
 bind index <F5> imap-fetch-mail
+
+set ssl_starttls = yes
+set ssl_force_tls = yes
