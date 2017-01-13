@@ -1,2 +1,4 @@
 pip wolframalpha-cli
 pip scrapy
+pip rainbowstream
+pip3 cryptography
