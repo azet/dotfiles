@@ -115,6 +115,9 @@ export PATH=$PATH:$HOME/packer
 ## intel vtune
 [[ -d /opt/intel/vtune_amplifier_xe/bin64 ]] && export PATH=$PATH:/opt/intel/vtune_amplifier_xe/bin64
 
+## Temporary files in $HOME/.tmp
+export TMPDIR=$HOME/.tmp
+
 ## debian specific
 export DEBEMAIL=azet@azet.org
 export DEBFULLNAME="Aaron Zauner"
