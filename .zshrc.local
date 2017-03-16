@@ -91,22 +91,25 @@ setopt append_history extended_history hist_allow_clobber             \
        inc_append_history share_history hist_expire_dups_first        \
        hist_lex_words hist_verify hist_ignore_dups hist_ignore_space
 
+# create a local temp. dir
+[[ -d ${HOME}/.tmp ]] || mkdir -p "${HOME}/.tmp"
+
 # PATHs and general global variables
 ## sbin
-export PATH=$PATH:/usr/sbin
+export PATH=${PATH}:/usr/sbin
 
 ## Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=${HOME}/go
+export PATH=${PATH}:${GOPATH}/bin
 
 ## packer
-export PATH=$PATH:$HOME/packer
+export PATH=${PATH}:${HOME}/packer
 
 ## PATH addition for *BSD /usr/local and Homebrew (OSX)
 [[ ${__dot_operating_system} == "macosx" || \
    ${__dot_operating_system} == "bsd" ]] && {
-  export PATH=$PATH:/usr/local/bin
-  export PATH=$PATH:/usr/local/sbin
+  export PATH=${PATH}:/usr/local/bin
+  export PATH=${PATH}:/usr/local/sbin
 }
 
 ## intel parallel xe suite (intel compiler etc.)
@@ -129,9 +132,9 @@ export DEBFULLNAME="Aaron Zauner"
 #> these are actual scripts/programs that may contain
 #> any level of sophistication. LuaJIT is used even
 #> when not necessary to keep consistency.
-for file ($HOME/dotfiles/aliases/*); do
-  name=$(basename $file:r)
-  alias $name=$file
+for file (${HOME}/dotfiles/aliases/*); do
+  name=$(basename ${file:r})
+  alias ${name}=${file}
 done
 
 ## navigation
