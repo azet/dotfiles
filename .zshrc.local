@@ -1,4 +1,6 @@
 # load useful zsh modules
+autoload -U zfinit
+zfinit
 zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
 # autoload builtin functions
