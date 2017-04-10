@@ -1,7 +1,6 @@
 # sidebar settings
 set sidebar_width=25
 set sidebar_visible=yes
-set sidebar_delim=' [.] '
 #set sidebar_sort=no
 
 # color of folders with new mail
