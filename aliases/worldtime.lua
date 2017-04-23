@@ -12,6 +12,7 @@ local tz_time = function(time)
   return os.date(fmt, time)
 end
 
+print("local:" .. tz_time(now))
 for i, e in ipairs(timezones) do
   print(e .. tz_time(now + e * hour))
 end
