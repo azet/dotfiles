@@ -238,6 +238,18 @@ alias kreboot='sudo ${__dot_foreign_path}/kexec-reboot/kexec-reboot -vi'
 ## screenshot
 alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 
+## 'less' with syntax highlighting
+function less_highlight() {
+  case ${@} in
+  *.html|*.css|*.tex|*.c|*.cpp|*.py|*.rb|*.php|*.lua|*.sh|*.bash|*.zsh|\
+  *.rs|*.ocaml|*.md|*.swift|*.go|*.txt|*.asm|*.h|*.hpp|[M|m]akefile)
+    LESS=" -RN" LESSOPEN="| highlight %s --out-format xterm256 --quiet --force --style solarized-light " less ${@}
+  ;;
+  *) less ${@} ;;
+  esac
+};
+alias less='eval less_highlight'
+
 ## 'open' shortcut
 [[ ${__dot_operating_system} == "macosx" ]] || function open() {
   case ${1} in
