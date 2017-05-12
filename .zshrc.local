@@ -249,6 +249,7 @@ function less_highlight() {
   esac
 };
 alias less='eval less_highlight'
+alias more=less
 
 ## 'open' shortcut
 [[ ${__dot_operating_system} == "macosx" ]] || function open() {
