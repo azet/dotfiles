@@ -242,8 +242,9 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 function less_highlight() {
   case ${@} in
   *.html|*.css|*.tex|*.c|*.cpp|*.py|*.rb|*.php|*.lua|*.sh|*.bash|*.zsh|\
-  *.rs|*.ocaml|*.md|*.swift|*.go|*.txt|*.asm|*.h|*.hpp|[M|m]akefile)
-    LESS=" -RN" LESSOPEN="| highlight %s --out-format xterm256 --quiet --force --style solarized-light " less ${@}
+  *.rs|*.ocaml|*.md|*.swift|*.go|*.asm|*.h|*.hpp|*.r|*.m|*.rst|*.pl)
+    LESS=" -RN" LESSOPEN="| highlight %s --out-format xterm256 --quiet \
+      --force --style solarized-dark " less ${@}
   ;;
   *) less ${@} ;;
   esac
