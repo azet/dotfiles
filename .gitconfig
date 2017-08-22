@@ -9,6 +9,8 @@
   whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,cr-at-eol,trailing-space
 [push]
   default = current
+[commit]
+  gpgsign = true
 [http]
   sslVerify
 [diff]
