@@ -168,7 +168,7 @@ alias load='sar 1 3'
              echo; ip neigh; echo; ip route; echo; ip a'
 }
 alias id='id; echo; getent passwd ${UID}'
-alias mtr='sudo mtr -o "LV G SRD NBWA IJMX"'
+alias mtr='sudo mtr -o "LV G SRD NBWA IJMX" --curses --displaymode 2'
 alias checkroute='mtr 8.8.8.8 -tezi "0.5" -s "-1" -Q1 --ipinfo 1'
 alias testroute=checkroute
 
