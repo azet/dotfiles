@@ -269,8 +269,10 @@ alias more=less
 
 # special community maintained zsh features
 ## history substring search and syntax highlighting
-source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
-source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh" ]] && \
+	source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+[[ -f "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+	source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # external cli command completion support
 ## Google Compute Engine
