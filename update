@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+git pull --all --progress -q
+
+echo "-------------------------------------------------------"
+git show --oneline --pretty HEAD@{0}
+echo "-------------------------------------------------------"
+
+git verify-commit HEAD@{0} &>/dev/null || exit 1
+printf "\n >> signature on commit verified.\n\n"
+
+items=$(git diff --name-only HEAD@{1} HEAD@{0})
+[[ ${items} ]] && \
+  for item in ${items}; do
+    # make sure we only copy dotfiles/dirs
+    [[ ${item:0:1} == "." ]] && \
+    cp -R "${item}" ~ && printf "  '%s' > copied to your home-directory\n" ${item}
+  done ; echo
+
