@@ -159,7 +159,7 @@ alias history='history -i -50'
 
 ## buitins, coreutils, system tools
 alias f='file'
-alias s='find'
+alias s='find -type f | peco'
 alias shares='/media/mount'
 alias top='htop || top'
 alias systop='glances'
