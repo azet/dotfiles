@@ -100,6 +100,9 @@ setopt append_history extended_history hist_allow_clobber             \
 ## sbin
 export PATH=${PATH}:/usr/sbin
 
+## Python / pip
+export PATH=${PATH}:${HOME}/.local/bin
+
 ## Go
 export GOPATH=${HOME}/go
 export GOROOT=${HOME}/go # some projects use `GOPATH`
