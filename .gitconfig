@@ -36,3 +36,6 @@
   changed = yellow
   untracked = ul cyan
   branch = cyan
+[merge]
+	tool = smerge
+
