@@ -59,41 +59,52 @@ git submodule foreach git pull
 ## [ note: quite a lot of this has been copied from elsewhere, from people that maintain & ]
 ## [ regularly update preferences and checks relevant to change OS X system configs, plist ]
 ## [ entries and settings. In this case particularly from kdeldycke/dotfiles - thanks!     ]
-[[ ${is_os?() == "macos"} ]] && {
+[[ $(is_os?) == "macosx" ]] && {
   # First close system prefs so nothing can overwrite the following changes
   osascript -e 'tell application "System Preferences" to quit'
 
   # verbose boot (kernel bootup instead of loading Apple screen)
-  sudo nvram boot-args="-v"
+  printf "> attempting to set verbose boot\n\n" && sudo nvram boot-args="-v"
   
   # make zsh universal default
+  printf "> make zsh universal default shell\n\n"
   sudo chsh -s /bin/zsh $USERNAME
   sudo chsh -s /bin/zsh root
   
   # set developer mode
+  printf "> setting dev mode\n\n"
   sudo spctl developer-mode enable-terminal
   
+  printf "> setting terminal specific options:\n\n"
   # Only use UTF-8 in Terminal.app
-  defaults write com.apple.terminal StringEncodings -array "4"
+  printf "| - utf8 only  "
+  defaults write com.apple.terminal StringEncodings -array "4" && printf "[x]\n"
   
   # Enable “focus follows mouse” for Terminal.app and all X11 apps
   # i.e. hover over a window and start typing in it without clicking first
-  defaults write com.apple.terminal FocusFollowsMouse -bool true
-  defaults write org.x.X11 wm_ffm -bool true
-  defaults write org.x.X11 wm_click_through -bool true
+  printf "| - follow mouse focus with multiple open windows  "
+  defaults write com.apple.terminal FocusFollowsMouse -bool true &&
+  defaults write org.x.X11 wm_ffm -bool true 			 &&
+  defaults write org.x.X11 wm_click_through -bool true		 && printf "[x]\n"
 
   # Enable Secure Keyboard Entry in Terminal.app
   # See: https://security.stackexchange.com/a/47786/8918
-  defaults write com.apple.terminal SecureKeyboardEntry -bool true
+  printf "| - secure keyboard entry  "
+  defaults write com.apple.terminal SecureKeyboardEntry -bool true && printf "[x]\n"
 
+  printf "| - finally set misc terminal.app config settings..\n"
   # Disable the annoying line marks
   defaults write com.apple.Terminal ShowLineMarks -int 0
-  
+ 
+  printf "| - ..and copy com.apple.Terminal.plist to ~/Library/Preferences/\n" 
   # Copy my personal terminal plist settings to my user preferences
   cp dist/osx/plists/com.apple.Terminal.plist ~/Library/Preferences/
-  
+  printf "! \033[1mDONE\033[0m [setting up terminal and OS specific settings]\n\n"
+
+
   # Finally set-up Homebrew for software packages
-  $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh) || exit 1  
+  printf "> setting up Homebrew for package install:\n\n"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
 }
 
 # Set-up specified software packages for running OS/Distro
