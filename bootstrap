@@ -44,8 +44,10 @@ function install_pkgs() {
     sudo apt-get install -y ${d_pkg_debian}
   ;;
   *Darwin*)
-    echo "Homebrew will be set-up - package lists to be added"
-    exit 1
+    brew install ${__pkg_macosx_homebrew} || exit 1
+    brew upgrade
+    brew update
+    brew doctor
   ;;
   esac
 }
@@ -74,7 +76,10 @@ git submodule foreach git pull
   # set developer mode
   printf "> setting dev mode\n\n"
   sudo spctl developer-mode enable-terminal
-  
+
+  printf "> installing xcode cli tools\n\n"
+  xcode-select --install  
+
   printf "> setting terminal specific options:\n\n"
   # Only use UTF-8 in Terminal.app
   printf "| - utf8 only  "
@@ -105,6 +110,8 @@ git submodule foreach git pull
   # Finally set-up Homebrew for software packages
   printf "> setting up Homebrew for package install:\n\n"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
+ 
+  # and that's it for OS X - let's get on with installing packages
 }
 
 # Set-up specified software packages for running OS/Distro
