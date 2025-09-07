@@ -12,3 +12,7 @@ set pastetoggle=<F2>
 set showmode
 set dir=$HOME/.tmp
 
+
+set shiftwidth=2 smarttab
+set expandtab
+set tabstop=4 softtabstop=0

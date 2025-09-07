@@ -48,16 +48,18 @@ function install_pkgs() {
     brew upgrade
     brew update
     brew doctor
+    brew cleanup
   ;;
   esac
 }
 
 echo "> initializing, updating and pulling git submodules:"
 {
-	git submodule init 
-	git submodule update
+	git submodule init -q
+	git submodule update -q
 	git submodule foreach git pull
-} && printf "\n\n> git submodules updated!\n\n" || ( printf "! error updating git submodules, exiting\n\n" && exit 1 )
+} && printf "\n\n> git submodules updated!\n\n" \
+  || ( printf "! error updating git submodules, exiting\n\n" && exit 1 )
 
 # OS/Distro relevant changes
 
