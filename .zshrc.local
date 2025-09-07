@@ -156,6 +156,8 @@ alias h='http'
 alias e='echo'
 alias p=e
 alias peco='peco --prompt "peco >" -b 9999'
+alias bat='bat --theme zenburn'
+alias pre='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 
 ## history
 alias history='history -i -50'
@@ -223,6 +225,8 @@ alias glf='git log --graph --abbrev-commit --decorate --date=relative --format=f
 ### git: diff beauty
 alias merge-diff='git diff --name-only --diff-filter=U'
 alias hist-diff='git diff --histogram --numstat'
+alias bat-diff='git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff'
+
 
 ## github
 alias hub='${__dot_foreign_path}/hub/hub'

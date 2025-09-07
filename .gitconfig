@@ -7,16 +7,24 @@
   abbrev = 12 # LKLM-style
   autocrlf = input
   whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,cr-at-eol,trailing-space
+  pager = delta
 [push]
   default = current
 [commit]
-  gpgsign = true
+#  gpgsign = true
 [http]
   sslVerify
 [diff]
   algorithm = patience
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+#  side-by-side = true
+  navigate = true  # use n and N to move between diff sections
+  dark = true      # or light = true, or omit for auto-detection
 [merge]
   tool = smerge 
+  conflictStyle = zdiff3
 [pretty]
   fixes = Fixes: %h (\"%s\")
 

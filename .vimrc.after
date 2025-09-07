@@ -1,3 +1,9 @@
+" azet's basic vimrc
+ 
+set nocompatible
+filetype off
+
+syntax on
 color molokai
 let g:rehash256=1
 set background=dark
