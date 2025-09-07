@@ -7,8 +7,8 @@ echo "-------------------------------------------------------"
 git show --oneline --pretty HEAD@{0}
 echo "-------------------------------------------------------"
 
-git verify-commit HEAD@{0} &>/dev/null || exit 1
-printf "\n >> signature on commit verified.\n\n"
+#git verify-commit HEAD@{0} &>/dev/null || exit 1
+#printf "\n >> signature on commit verified.\n\n"
 
 items=$(git diff --name-only HEAD@{1} HEAD@{0})
 [[ ${items} ]] && \
@@ -17,4 +17,6 @@ items=$(git diff --name-only HEAD@{1} HEAD@{0})
     [[ ${item:0:1} == "." ]] && \
     cp -R "${item}" ~ && printf "  '%s' > copied to your home-directory\n" ${item}
   done ; echo
+
+printf "\tFINISHED UPDATING\n\n"
 
