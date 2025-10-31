@@ -107,7 +107,7 @@ for file in "${dotfiles[@]}"; do
   {
     ln -shF "${PWD}/${file}" "${HOME}/${file}"
   }  && echo "${CLI}| - linked ${PWD}/${file} to ${HOME}/${file}.${RST}"  \
-     || echo "${ERR}! - ${file} could not be linked to ${PWD}/${file}. ${RST}"
+     || echo "${ERR}! - ${file} could not be linked to ${HOME}/${file}. ${RST}"
 done
 
 # Set-up specified software packages for running OS/Distro

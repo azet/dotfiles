@@ -30,7 +30,7 @@ blacklist=(.gitignore .gitmodules)
   brew update -q
   brew upgrade -gvi --ask --require-sha
   brew cleanup -sv
-  brew doctor -vd
+  brew doctor -vD
 }
 
 printf "\tFINISHED UPDATING\n\n"
