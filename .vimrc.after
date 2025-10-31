@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 syntax on
-color solarized
+color molokai
 let g:rehash256=1
 set background=dark
 nnoremap <F2> :set invpaste paste?<CR>
