@@ -49,8 +49,8 @@ function install_pkgs() {
   ;;
   *Darwin*)
     brew install ${__pkg_macosx_homebrew} || exit 1
-    brew upgrade
-    brew update --require-sha
+    brew upgrade --require-sha
+    brew update 
     brew cleanup -s
     brew doctor
   ;;
