@@ -101,7 +101,7 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   # and that's it for OS X - let's get on with installing packages
 }
 
-dotfiles=(.gitconfig .lftprc .tmux.conf .goobookrc .Xdefaults .conkyrc .vimrc.after .zshrc.local .config .gnupg .mutt)
+dotfiles=(.gitconfig .gitmux.conf .lftprc .tmux.conf .goobookrc .Xdefaults .conkyrc .vimrc.after .zshrc.local .config .gnupg .mutt)
 echo "${CLI}> linking dotfiles/dirs:${RST}"
 for file in "${dotfiles[@]}"; do
   {
