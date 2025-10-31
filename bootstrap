@@ -5,6 +5,15 @@
 set -oe pipefail
 source bootstrap.conf
 
+declare __WHI=$(tput setaf 7)
+declare __BLU=$(tput setaf 4)
+declare __RED=$(tput setaf 1)
+declare __BOL=$(tput bold)
+declare RST=$(tput sgr0)
+declare CLI="$__WHI"
+declare ERR="$__BLU $__BOL"
+declare EXI="$__RED $__BOL"
+
 function is_excluded?() {
   for f in ${d_excl_files}; do
     [[ ${f} == *${files}* ]] && return 1
@@ -53,26 +62,26 @@ function install_pkgs() {
   esac
 }
 
-echo "> initializing, updating and pulling git submodules:"
+echo "${CLI}> initializing, updating and pulling git submodules:${RST}"
 { 
-  git submodule init -q
-  git submodule update -q
-  git submodule foreach git pull
-} && printf "\n\n> git submodules updated!\n\n" \
-  || ( printf "! error updating git submodules, exiting\n\n" && exit 1 )
+  git submodule sync --recursive 
+  git submodule update --init --recursive --jobs 8 --depth 20 -f
+  git submodule foreach 'echo $sm_path `git rev-parse HEAD && git status`'
+} && printf "\n\n${CLI}> git submodules updated!${RST}\n\n" \
+  || ( printf "${ERR}! error updating git submodules.. !! BUT CONTINUING !! ${RST} \n\n" )
 
 
-printf  "> will need super-user privileges (sudo) soon.. so I need your "
+printf "${CLI}> will need super-user privileges (sudo) soon.. so I need your ${RST}"
 {
-  sudo echo "[x]"
-} || ( printf "[-]\n! error obtaining sudo privs." && exit 1 )
+  sudo printf "${CLI}[x]${RST}"
+} || ( printf "${EXI}[-]\n! error obtaining sudo privs. !! EXITING !! ${RST}\n\n" && exit 1 )
 
 # zsh relevant default conf: grml
-printf  "> adding /etc/zshrc from grml zsh:  "
+printf "${CLI}> adding /etc/zshrc from grml zsh:  "
 {
     sudo curl --output /etc/zshrc https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc -s
-} && printf "[x]\n" \
-  || ( printf "[-]\n! error downloading and setting zshrc in /etc\n\n" && exit 1 )
+} && printf "[x]\n${RST}" \
+  || ( printf "${EXI}[-]\n! error downloading and setting zshrc in /etc !! EXITING !! \n\n${RST}" && exit 1 )
 
 
 # OS/Distro relevant changes
@@ -86,21 +95,21 @@ printf  "> adding /etc/zshrc from grml zsh:  "
   osascript -e 'tell application "System Preferences" to quit'
 
   # verbose boot (kernel bootup instead of loading Apple screen)
-  printf "> attempting to set verbose boot\n\n" && sudo nvram boot-args="-v"
+  printf "${CLI}> attempting to set verbose boot\n${RST}" && sudo nvram boot-args="-v"
   
   # make zsh universal default
-  printf "> make zsh universal default shell\n\n"
+  printf "${CLI}> make zsh universal default shell\n${RST}"
   sudo chsh -s /bin/zsh $USERNAME
   sudo chsh -s /bin/zsh root
   
   # set developer mode
-  printf "> setting dev mode\n\n"
+  printf "${CLI}> setting dev mode\n\n${RST}"
   sudo spctl developer-mode enable-terminal
 
-  printf "> installing xcode cli tools\n\n"
+  printf "${CLI}> installing xcode cli tools\n\n${RST}"
   xcode-select --install  
 
-  printf "> setting terminal specific options:\n\n"
+  printf "${CLI}> setting terminal specific options:\n\n"
   # Only use UTF-8 in Terminal.app
   printf "| - utf8 only  "
   defaults write com.apple.terminal StringEncodings -array "4" && printf "[x]\n"
@@ -124,13 +133,14 @@ printf  "> adding /etc/zshrc from grml zsh:  "
   printf "| - ..and copy com.apple.Terminal.plist to ~/Library/Preferences/\n" 
   # Copy my personal terminal plist settings to my user preferences
   cp dist/osx/plists/com.apple.Terminal.plist ~/Library/Preferences/
-  printf "! \033[1mDONE\033[0m [setting up terminal and OS specific settings]\n\n"
+  printf "| - !!DONE!! [setting up terminal and OS specific settings]\n\n${RST}"
 
 
   # Finally set-up Homebrew for software packages
-  printf "> setting up Homebrew for package install:\n\n"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
- 
+  $(brew) || {
+    printf "${CLI}> setting up Homebrew for package install:\n\n${RST}"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
+  }
   # and that's it for OS X - let's get on with installing packages
 }
 
