@@ -4,8 +4,6 @@
 #
 set -oe pipefail
 
-
-
 ## lib functions
 source lib/os.inc
 
@@ -14,33 +12,34 @@ source bootstrap.conf
 
 
 echo "${CLI}> initializing, updating and pulling git submodules:${RST}"
-{ 
-  git submodule sync --recursive 
+{
+  git submodule sync --recursive
   git submodule update --init --recursive --jobs 8 --depth 20 -f
   git submodule foreach 'echo $sm_path `git rev-parse HEAD && git status`'
-} && printf "\n\n${CLI}> git submodules updated!${RST}\n\n" \
+} && printf "\n\n${CLI}> git submodules updated!${RST}\n" \
   || ( printf "${ERR}! error updating git submodules.. !! BUT CONTINUING !! ${RST} \n\n" )
 
 
 printf "${CLI}> will need super-user privileges (sudo) soon.. so I need your ${RST}"
 {
-  sudo printf "${CLI}[x]${RST}"
+  sudo printf "${CLI}> -- got sudo privs. --\n${RST}"
 } || ( printf "${EXI}[-]\n! error obtaining sudo privs. !! EXITING !! ${RST}\n\n" && exit 1 )
 
-# zsh relevant default conf: grml
 
+
+# zsh relevant default conf: grml
 printf "${CLI}> adding /etc/zshrc from grml zsh:  "
 {
     sudo curl --output /etc/zshrc https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc -s
 } && printf "[x]\n${RST}" \
   || ( printf "${EXI}[-]\n! error downloading and setting zshrc in /etc !! EXITING !! \n\n${RST}" && exit 1 )
 
-# vim-janus config
-printf "${CLI}> setting up vim janus config:  "
+# vim janus config
+printf "${CLI}> adding and bootstrapping vim janus config: "
 {
-  curl -L https://bit.ly/janus-bootstrap -s | bash
+  curl -s -L https://bit.ly/janus-bootstrap | bash &>/dev/null 
 } && printf "[x]\n${RST}" \
-  || ( printf "${ERR}[-]\n! error downloading and setting vim janus confi !! BUT CONTINUING !! \n\n${RST}"  )
+  || ( printf "${ERR}! error bootstrapping vim janus.. !! BUT CONTINUING !! ${RST} \n\n" )
 
 # OS/Distro relevant changes
 
