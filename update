@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -eu -o pipefail
 
+# lib functions
+source lib/os.inc
+
+# config
+source bootstrap.conf
+
+## Main update routine
 git pull --all --progress -q
 
 echo "-------------------------------------------------------"
@@ -17,6 +24,12 @@ items=$(git diff --name-only HEAD@{1} HEAD@{0})
     [[ ${item:0:1} == "." ]] && \
     cp -R "${item}" ~ && printf "  '%s' > copied to your home-directory\n" ${item}
   done ; echo
+
+[[ $(is_os?) == "macosx" ]] && {
+  brew update
+  brew doctor
+  brew upgrade ${__pkg_macosx_homebrew}
+}
 
 printf "\tFINISHED UPDATING\n\n"
 
