@@ -107,7 +107,7 @@ printf "${CLI}> adding /etc/zshrc from grml zsh:  "
   sudo spctl developer-mode enable-terminal
 
   printf "${CLI}> installing xcode cli tools\n\n${RST}"
-  xcode-select --install  
+  xcode-select --install || continue
 
   printf "${CLI}> setting terminal specific options:\n\n"
   # Only use UTF-8 in Terminal.app
@@ -137,7 +137,7 @@ printf "${CLI}> adding /etc/zshrc from grml zsh:  "
 
 
   # Finally set-up Homebrew for software packages
-  $(brew) || {
+  brew -v || {
     printf "${CLI}> setting up Homebrew for package install:\n\n${RST}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
   }
