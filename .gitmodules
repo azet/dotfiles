@@ -1,27 +1,24 @@
-[submodule "foreign/vim-janus"]
-  path = foreign/vim-janus
-  url = https://github.com/carlhuda/janus.git
 [submodule "foreign/grml-etc-core"]
-  path = foreign/grml-etc-core
-  url = https://github.com/grml/grml-etc-core
+    path = foreign/grml-etc-core
+    url = https://github.com/grml/grml-etc-core
 [submodule "foreign/dotgdb"]
-  path = foreign/dotgdb
-  url = https://github.com/dholm/dotgdb.git
+    path = foreign/dotgdb
+    url = https://github.com/dholm/dotgdb.git
 [submodule "foreign/isis-scripts"]
-	path = foreign/isis-scripts
-  url = https://github.com/isislovecruft/scripts.git
+    path = foreign/isis-scripts
+    url = https://github.com/isislovecruft/scripts.git
 [submodule "foreign/smcfancontrol"]
-	path = foreign/smcfancontrol
-	url = https://github.com/hholtmann/smcFanControl.git
+    path = foreign/smcfancontrol
+    url = https://github.com/hholtmann/smcFanControl.git
 [submodule "foreign/boringssl"]
-	path = foreign/boringssl
-	url = https://boringssl.googlesource.com/boringssl
+    path = foreign/boringssl
+    url = https://boringssl.googlesource.com/boringssl
 [submodule "foreign/openssl"]
-	path = foreign/openssl
-	url = https://github.com/openssl/openssl.git
+    path = foreign/openssl
+    url = https://github.com/openssl/openssl.git
 [submodule "foreign/vix"]
-  path = foreign/vix
-  url = https://github.com/BatchDrake/vix.git
+    path = foreign/vix
+    url = https://github.com/BatchDrake/vix.git
 [submodule "foreign/peco"]
 	path = foreign/peco
 	url = https://github.com/peco/peco.git

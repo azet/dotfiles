@@ -28,12 +28,19 @@ printf "${CLI}> will need super-user privileges (sudo) soon.. so I need your ${R
 } || ( printf "${EXI}[-]\n! error obtaining sudo privs. !! EXITING !! ${RST}\n\n" && exit 1 )
 
 # zsh relevant default conf: grml
+
 printf "${CLI}> adding /etc/zshrc from grml zsh:  "
 {
     sudo curl --output /etc/zshrc https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc -s
 } && printf "[x]\n${RST}" \
   || ( printf "${EXI}[-]\n! error downloading and setting zshrc in /etc !! EXITING !! \n\n${RST}" && exit 1 )
 
+# vim-janus config
+printf "${CLI}> setting up vim janus config:  "
+{
+  curl -L https://bit.ly/janus-bootstrap -s | bash
+} && printf "[x]\n${RST}" \
+  || ( printf "${ERR}[-]\n! error downloading and setting vim janus confi !! BUT CONTINUING !! \n\n${RST}"  )
 
 # OS/Distro relevant changes
 
@@ -90,7 +97,7 @@ printf "${CLI}> adding /etc/zshrc from grml zsh:  "
   # Finally set-up Homebrew for software packages
   brew -v || {
     printf "${CLI}> setting up Homebrew for package install:\n\n${RST}"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1  
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1
   }
   # and that's it for OS X - let's get on with installing packages
 }
