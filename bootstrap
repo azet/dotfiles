@@ -2,7 +2,7 @@
 #
 # Bootstraps user environment and software toolchain
 #
-
+set -oe pipefail
 source bootstrap.conf
 
 function is_excluded?() {
@@ -54,12 +54,26 @@ function install_pkgs() {
 }
 
 echo "> initializing, updating and pulling git submodules:"
-{
-	git submodule init -q
-	git submodule update -q
-	git submodule foreach git pull
+{ :;
+	#git submodule init -q
+	#git submodule update -q
+	#git submodule foreach git pull
 } && printf "\n\n> git submodules updated!\n\n" \
   || ( printf "! error updating git submodules, exiting\n\n" && exit 1 )
+
+
+printf  "> will need super-user privileges (sudo) soon.. so I need your "
+{
+  sudo echo "[x]"
+} || ( printf "[-]\n! error obtaining sudo privs." && exit 1 )
+
+# zsh relevant default conf: grml
+printf  "> adding /etc/zshrc from grml zsh:  "
+{
+    sudo curl --output /etc/zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc -s
+} && printf "[x]\n" \
+  || ( printf "[-]\n! error downloading and setting zshrc in /etc\n\n" && exit 1 )
+
 
 # OS/Distro relevant changes
 
