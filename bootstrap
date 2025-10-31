@@ -101,6 +101,15 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   # and that's it for OS X - let's get on with installing packages
 }
 
+dotfiles=(.gitconfig .lftprc .tmux.conf .goobookrc .Xdefaults .conkyrc .vimrc.after .zshrc.local .config .gnupg .mutt)
+echo "${CLI}> linking dotfiles/dirs:${RST}"
+for file in "${dotfiles[@]}"; do
+  {
+    ln -shF "${PWD}/${file}" "${HOME}/${file}"
+  }  && echo "${CLI}| - linked ${PWD}/${file} to ${HOME}/${file}.${RST}"  \
+     || echo "${ERR}! - ${file} could not be linked to ${PWD}/${file}. ${RST}"
+done
+
 # Set-up specified software packages for running OS/Distro
 install_pkgs
 

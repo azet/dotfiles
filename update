@@ -18,17 +18,19 @@ echo "-------------------------------------------------------"
 #printf "\n >> signature on commit verified.\n\n"
 
 items=$(git diff --name-only HEAD@{1} HEAD@{0})
+blacklist=(.gitignore .gitmodules)
 [[ ${items} ]] && \
   for item in ${items}; do
-    # make sure we only copy dotfiles/dirs
-    [[ ${item:0:1} == "." ]] && \
-    cp -R "${item}" ~ && printf "  '%s' > copied to your home-directory\n" ${item}
+    # make sure we only link dotfiles/dirs
+    [[ ${item:0:1} == "." ]] && [[ ${item} =~ ${!blacklist[@]} ]] && \
+    ln -shF "${PWD}/${item}" "${HOME}/${item}" && printf "  '%s' > linked to your home-directory\n" ${item}
   done ; echo
 
 [[ $(is_os?) == "macosx" ]] && {
-  brew update
-  brew doctor
-  brew upgrade ${__pkg_macosx_homebrew}
+  brew update -q
+  brew upgrade -gvi --ask --require-sha
+  brew cleanup -sv
+  brew doctor -vd
 }
 
 printf "\tFINISHED UPDATING\n\n"

@@ -118,3 +118,6 @@
 [submodule "foreign/gitmux"]
 	path = foreign/gitmux
 	url = https://github.com/arl/gitmux.git
+[submodule "foreign/vim-janus"]
+	path = foreign/vim-janus
+	url = https://github.com/carlhuda/janus.git
