@@ -9,11 +9,20 @@ declare CLI="$__WHI"
 declare ERR="$__BLU $__BOL"
 declare EXI="$__RED $__BOL"
 
+#function bar_setup() {
+  # curl -sL ${__bar_bz2_url} --output /tmp/bar-1.4.bz2.gz
+  # curl -sL ${__bar_md5_url} --output /tmp/bar-1.4.md5
+  # [[ $(md5 -s - /tmp/bar-1.4.bz2.gz </tmp/bar-1.4.md5) ]] && {
+  #    (cd /tmp && tar xfz /tmp/bar.bz2.gz && cd - )>/dev/null
+  #  /tmp/bar-1.4/bar -D > lib/bar.inc
+  # } || ( printf "${ERR}! cant process/unpack bar script !! BUT CONTINUING !!\n${RST}" )
+#}
+
 function is_excluded?() {
-  for f in ${d_excl_files}; do
-    [[ ${f} == *${files}* ]] && return 1
+  for file in ${__excl_files}; do
+    [[ ${file} == *${files}* ]] && return 1
   done
-  return
+  return 0
 }
 
 function is_os?() {
@@ -27,7 +36,7 @@ function is_os?() {
 }
 
 function is_distro?() {
-  case $(< /etc/*release*) in
+  case $(< "/etc/*release*") in
   *Debian* | *Ubuntu*)
     printf "debian"
   ;;
