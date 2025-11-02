@@ -128,7 +128,7 @@ export PATH=${PATH}:${HOME}/packer
 export TMPDIR=$HOME/.tmp
 
 ## debian specific
-export DEBEMAIL=azet@azet.org
+export DEBEMAIL="azet@azet.org"
 export DEBFULLNAME="Aaron Zauner"
 
 # aliases
@@ -300,3 +300,14 @@ alias more=less
   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 }
 
+
+## fzf interation
+__fzf_path=($(whereis -b fzf))
+[[ -f ${__fzf_path[2]} ]] && {
+  source <(${__fzf_path[2]} --zsh)
+}
+
+# fzf & tmux
+[[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "20%"'
+
+# EOF
