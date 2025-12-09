@@ -111,7 +111,7 @@ echo "${CLI}> linking dotfiles/dirs:${RST}"
 #XXX/TODO(azet): integrate bar per file for status bar etc.
 for file in "${__incl_dotfiles[@]}"; do
   {
-    ln -shF "${PWD}/${file}" "${HOME}/${file}" 
+    ln -sF "${PWD}/${file}" "${HOME}/${file}" 
   }  && echo "${CLI}| - linked ${PWD}/${file} to ${HOME}/${file}.${RST}"  \
      || echo "${ERR}! - ${file} could not be linked to ${HOME}/${file}. ${RST}"
 done
