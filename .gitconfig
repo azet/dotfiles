@@ -3,13 +3,13 @@
   name = Aaron Zauner
   email = azet@azet.org
   signingkey = 0xFDB9B5D5
-[core]
-  abbrev = 12 # LKLM-style
   autocrlf = input
   whitespace = blank-at-eol,blank-at-eof,space-before-tab,tab-in-indent,cr-at-eol,trailing-space
   pager = delta
 [push]
   default = current
+[pull]
+  rebase = false
 [commit]
 #  gpgsign = true
 [http]
@@ -23,7 +23,7 @@
   navigate = true  # use n and N to move between diff sections
   dark = true      # or light = true, or omit for auto-detection
 [merge]
-  tool = smerge 
+  tool = smerge
   conflictStyle = zdiff3
 [pretty]
   fixes = Fixes: %h (\"%s\")

@@ -114,6 +114,8 @@ export PATH=${PATH}:${HOME}/packer
 ## PATH addition for *BSD /usr/local and Homebrew (OSX)
 [[ ${__dot_operating_system} == "macosx" || \
    ${__dot_operating_system} == "bsd" ]] && {
+  export PATH=${PATH}:/opt/homebrew/bin
+  export PATH=${PATH}:/opt/homebrew/sbin
   export PATH=${PATH}:/usr/local/bin
   export PATH=${PATH}:/usr/local/sbin
 }
