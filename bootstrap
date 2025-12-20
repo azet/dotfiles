@@ -8,6 +8,12 @@ set -oe pipefail
 source lib/os.inc
 source lib/bar.inc
 
+### NCPU workaround, portable (POSIX, MacOSX), plus jobs/threads
+{
+  cores=$(getconf _NPROCESSORS_ONLN)
+  declare __dot_jobs="$((${cores}*2))"
+}
+
 ## config
 source bootstrap.conf
 
@@ -18,9 +24,9 @@ source bootstrap.conf
 
 # bootstrap submodules
 echo "${CLI}> initializing, updating and pulling git submodules:${RST}"
-{ 
+{
   git submodule sync --recursive
-  git submodule update --init --recursive --jobs 8 --depth 2 -f
+  git submodule update --init --recursive --jobs ${__dot_jobs} --depth 2 -f
   git submodule foreach 'echo $sm_path `git rev-parse HEAD && git status`'
 } && printf "\n\n${CLI}> git submodules updated!${RST}\n" \
   || ( printf "${ERR}! error updating git submodules.. !! BUT CONTINUING !! ${RST} \n\n" )
