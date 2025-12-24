@@ -34,7 +34,7 @@ echo "${CLI}> initializing, updating and pulling git submodules:${RST}"
 
 printf "${CLI}> will need super-user privileges (sudo) soon.. so I need your ${RST}"
 {
-  sudo printf "${CLI}> -- got sudo privs. --\n${RST}"
+  sudo printf "${CLI}\n> -- got sudo privs. --\n${RST}"
 } || ( printf "${EXI}[-]\n! error obtaining sudo privs. !! EXITING !! ${RST}\n\n" && exit 1 )
 
 
@@ -99,14 +99,25 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   # Disable the annoying line marks
   defaults write com.apple.Terminal ShowLineMarks -int 0
 
-  printf "| - ..and copy com.apple.Terminal.plist to ~/Library/Preferences/\n" 
+  printf "| - ..and copy com.apple.Terminal.plist to ~/Library/Preferences/\n"
   # Copy my personal terminal plist settings to my user preferences
   cp dist/osx/plists/com.apple.Terminal.plist ~/Library/Preferences/
   printf "| - !!DONE!! [setting up terminal and OS specific settings]\n\n${RST}"
 
+## disabled due to docker-desktop Homebrew Cask
+#  # set up docker for MacOS (apple silicon edition)
+#  [[ -f /Applications/Docker.app/Contents/MacOS/Docker\ Desktop.app/Contents/MacOS/Docker\ Desktop ]] || {
+#    printf "${CLI}> setting up docker for MacOS (Apple Silicon).. ${RST}"
+#    [[ -f ${PWD}/Downloads/Docker.dmg ]] || curl -s https://desktop.docker.com/mac/main/arm64/Docker.dmg -o /Users/azet/Downloads/Docker.dmg
+#    sudo hdiutil attach /Users/azet/Downloads/Docker.dmg &>/dev/null;
+#    sudo /Volumes/Docker/Docker.app/Contents/MacOS/install --accept-license
+#    sudo hdiutil detach /Volumes/Docker &>/dev/null
+#  } && echo "${CLI}! - set up Docker.app in /Applications for MacOS ${RST}" \
+#    || echo "${ERR}!!! failed docker setup !!!${RST}"
+
 
   # Finally set-up Homebrew for software packages
-  brew -v || {
+  brew -v &>/dev/null || {
     printf "${CLI}> setting up Homebrew for package install:\n\n${RST}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || exit 1
   }

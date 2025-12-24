@@ -118,6 +118,7 @@ export PATH=${PATH}:${HOME}/packer
   export PATH=${PATH}:/opt/homebrew/sbin
   export PATH=${PATH}:/usr/local/bin
   export PATH=${PATH}:/usr/local/sbin
+  export HOMEBREW_NO_ENV_HINTS=1
 }
 
 ## intel parallel xe suite (intel compiler etc.)
