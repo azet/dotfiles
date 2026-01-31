@@ -208,6 +208,7 @@ alias checkout='git checkout'
 alias push='gp'
 alias pull='git pull'
 alias amend='git commit -a --amend'
+alias status='git status'
 
 ### git: shortcuts for the super-lazy
 alias gp='git push'
