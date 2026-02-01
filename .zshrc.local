@@ -121,8 +121,12 @@ export PATH=${PATH}:${HOME}/packer
   export HOMEBREW_NO_ENV_HINTS=1
 }
 
+## PATHs for various tools copied to /opt/bin and /opt/sbin
+[[ -d /opt/bin  ]] && export PATH=${PATH}:/opt/bin
+[[ -d /opt/sbin ]] && export PATH=${PATH}:/opt/sbin
+
 ## intel parallel xe suite (intel compiler etc.)
-[[ -d /opt/intel/bin/ ]] && export PATH=$PATH:/opt/intel/bin
+[[ -d /opt/intel/bin/ ]] && export PATH=${PATH}:/opt/intel/bin
 
 ## intel vtune
 [[ -d /opt/intel/vtune_amplifier_xe/bin64 ]] && export PATH=$PATH:/opt/intel/vtune_amplifier_xe/bin64
