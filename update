@@ -33,5 +33,9 @@ blacklist=(.gitignore .gitmodules)
   brew doctor -vD
 }
 
+
+/usr/bin/env zsh -c "source ~/.zsh-plugins/zsh-snap/znap.zsh && znap pull"
+
 printf "\tFINISHED UPDATING\n\n"
 
+#EOF

@@ -38,15 +38,45 @@ printf "${CLI}> will need super-user privileges (sudo) soon.. so I need your ${R
 } || ( printf "${EXI}[-]\n! error obtaining sudo privs. !! EXITING !! ${RST}\n\n" && exit 1 )
 
 
-
-# zsh relevant default conf: grml
+# zsh - zshell
+## zsh relevant default conf: grml
 printf "${CLI}> adding /etc/zshrc from grml zsh:  "
 {
-    sudo curl --output /etc/zshrc https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc -s
+  sudo curl --output /etc/zshrc https://raw.githubusercontent.com/grml/grml-etc-core/master/etc/zsh/zshrc -s
 } && printf "[x]\n${RST}" \
   || ( printf "${EXI}[-]\n! error downloading and setting zshrc in /etc !! EXITING !! \n\n${RST}" && exit 1 )
 
-# vim janus config
+## znap
+printf "${CLI}> znap: zshell plugin mgr:  "
+{
+  [[ -r "~/.local/znap/znap.zsh" ]] || git clone --depth 1 -- \
+    https://github.com/marlonrichert/zsh-snap.git ~/.local/znap &> /dev/null
+
+  /usr/bin/env zsh -c "source ~/.local/znap/znap.zsh && \
+     znap clone \
+     git@github.com:zsh-users/zsh-completions.git \
+     git@github.com:zsh-users/zsh-syntax-highlighting.git \
+     git@github.com:mafredri/zsh-async.git \
+     git@github.com:rupa/z.git \
+     git@github.com:robbyrussell/oh-my-zsh.git \
+     git@github.com:sorin-ionescu/prezto.git \
+     git@github.com:sindresorhus/pure.git \
+     git@github.com:ael-code/zsh-colored-man-pages.git \
+     git@github.com:momo-lab/zsh-abbrev-alias.git \
+     git@github.com:Aloxaf/fzf-tab.git"
+} && printf "[x]\n> znap ~~ status \t.\t.\t.\n${RST}" && /usr/bin/env zsh -c "source ~/.local/znap/znap.zsh && znap status" \
+  || ( printf "${EXI}[-]\n! error downloading and setting znap !! EXITING !! \n\n${RST}" && exit 1 )
+
+## prezto
+printf "${CLI}> zsh prezto option (managed via znap in .zshrc.local):  "
+{
+  [[ -r "~/.local/zprezto" ]] || git clone --recursive https://github.com/sorin-ionescu/prezto.git "~/.local/zprezto" &>/dev/null 
+} && printf "[x]\n${RST}" \
+  || ( printf "${EXI}[-]\n! error downloading and setting zsh prezto !! EXITING !! \n\n${RST}" && exit 1 )
+
+
+# VIM vi improved
+## vim janus config
 printf "${CLI}> adding and bootstrapping vim janus config: "
 {
   curl -s -L https://bit.ly/janus-bootstrap | bash &>/dev/null 
@@ -123,6 +153,11 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   }
   # and that's it for OS X - let's get on with installing packages
 }
+
+
+## setup tmux specifics
+### TPM / tmux package manager
+[[ -d "~/.tmux/plugins/tpm" ]] || { git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm }
 
 echo "${CLI}> linking dotfiles/dirs:${RST}"
 #XXX/TODO(azet): integrate bar per file for status bar etc.
