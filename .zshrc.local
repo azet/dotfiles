@@ -562,11 +562,26 @@ alias more=less
   esac
 }
 
+# special community maintained zsh features
+## history substring search and syntax highlighting
+[[ -f "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh" ]] && \
+	source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+[[ -f "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+	source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+
+# prezto in case of prezto only operation (znap preferred as of 2026)
+#zstyle ':prezto:load' pmodule 'environment' 'terminal' 'archive' 'command-not-found' 'homebrew' 'osx' 'python' 'rsync' 'screen' 'tmux' 'ssh' 'utility'
 
 # znap - zsh repo pkg manager (simpler than git submodules/trees and building)
 source ~/.local/znap/znap.zsh
+mkdir -p "~/.local/znap/plugins"
+zstyle ':znap:*' repos-dir < "~/.local/znap/plugins"
 
-zstyle ':znap:*' repos-dir < ~/.local/znap/plugins
+#
+# XXX/TODO(azet): switch to zplug instesad of znap (most likely)
+#
+
 
 znap source zsh-completions
 znap source zsh-syntax-highlighting
@@ -577,7 +592,6 @@ znap source zsh-abbrev-alias
 znap source fzf-tab
 znap source prezto
 znap source prezto \
-  modules/archive
   modules/helper \
   modules/completion \
   modules/environment \
@@ -586,8 +600,6 @@ znap source prezto \
   modules/history \
   modules/directory \
   modules/syntax-highlighting \
-  modules/zsh-history-substring-search \
-  modules/utility \
   modules/homebrew \
   modules/osx \
   modules/python \
@@ -595,22 +607,12 @@ znap source prezto \
   modules/screen \
   modules/tmux \
   modules/ssh \
-  modules/utility \
+  modules/utility
 
-znap source pure
-fpath+=$(znap path pure)
+# main cli config
 autoload -Uz promptinit && promptinit
-prompt pure
+prompt grml
 
-# prezto in case of prezto only operation (znap preferred as of 2026)
-# zstyle ':prezto:load' pmodule 'environment' 'terminal' 'archive' 'command-not-found' 'homebrew' 'osx' 'python' 'rsync' 'screen' 'tmux' 'ssh' 'utility'
-
-# special community maintained zsh features
-## history substring search and syntax highlighting
-[[ -f "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh" ]] && \
-	source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
-[[ -f "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
-	source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ## fzf interation
 __fzf_path=($(whereis -b fzf))
@@ -620,7 +622,6 @@ __fzf_path=($(whereis -b fzf))
 
 # fzf & tmux
 [[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "20%"'
-
 
 #######################
 ######## MISC #########

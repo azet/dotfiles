@@ -42,9 +42,11 @@ root: ~/
 # startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
+attach: false
 
 windows:
+  - work:
+      - zsh
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -56,8 +58,9 @@ windows:
   - shell:
     - zsh
   - sysstat:
-       layout: main-horienzontal
-         panes:
-          - nettop -cd
-          - mtr 1.1 -tezi 0.5 -b -Q1 -e -i 1 -m 20 -s 500 --displaymode 0
-          - btop || glances
+       layout: main-vertical
+       panes:
+        - "nettop -cd"
+        - "mtr 1.1 -tezi 0.5 -b -Q1 -e -i 1 -m 20 -s 500 --displaymode 0"
+        - "btop || glances"
+
