@@ -569,7 +569,6 @@ alias more=less
 [[ -f "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
 	source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-
 # prezto in case of prezto only operation (znap preferred as of 2026)
 #zstyle ':prezto:load' pmodule 'environment' 'terminal' 'archive' 'command-not-found' 'homebrew' 'osx' 'python' 'rsync' 'screen' 'tmux' 'ssh' 'utility'
 
@@ -609,19 +608,75 @@ znap source prezto \
   modules/ssh \
   modules/utility
 
-# main cli config
-autoload -Uz promptinit && promptinit
-prompt grml
-
-
+# fzf
 ## fzf interation
 __fzf_path=($(whereis -b fzf))
 [[ -f ${__fzf_path[2]} ]] && {
   source <(${__fzf_path[2]} --zsh)
 }
 
-# fzf & tmux
-[[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "20%"'
+## fzf completion options XXX/TODO(azet): needs to be tested
+export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
+#export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
+
+## fzf default opts
+export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border --margin=1 --padding=1 --style full --preview 'fzf-preview.sh {}' --bind 'focus:transform-header:file --brief {}'"
+
+## fzf & tmux
+[[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "25%" --padding=1 --border=rounded --margin=0,1 --info=right --separator== --scrollbar=↓ --select-1 --exit-0'
+
+## find fzf supported dir/file based
+[[ ! -z "${TMUX}" ]] && \
+  alias fzind="find * &>/dev/null | fzf-tmux -x5 -h '65%' -w '60%' --prompt 'All> ' --reverse --border --padding 5 --margin 1 \
+             --header 'CTRL-D: Directories / CTRL-F: Files' \
+             --bind 'ctrl-d:change-prompt(Directories> )+reload(find * -type d)' \
+             --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' --multi --bind 'enter:become(open {+})' \
+             --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort'" \
+                     || \
+  alias fzind="find * &>/dev/null | fzf --prompt 'All> ' --reverse --padding 2 --margin 5 \
+            --border=rounded --separator== --scrollbar=↓ \
+            --header-border horizontal \
+            --border-label-pos 2 \
+            --color 'label:blue' \
+            --header 'CTRL-D: Directories / CTRL-F: Files' \
+            --bind 'ctrl-d:change-prompt(Directories> )+reload(find * -type d)' \
+            --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' --multi --bind 'enter:become(open {+})' \
+            --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort'"
+
+
+## fzf-tab znap
+enable-fzf-tab #enable
+toggle-fzf-tab #standby disabled
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' menu no
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':completion:*' fzf-completion-secondary-color red
+# preview a `git status` when completing git add
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
+
+## fzf-git.sh
+[[ -f "${__dot_foreign_path}/fzf-git.sh/fzf-git.sh" ]] && \
+	source "${__dot_foreign_path}/fzf-git.sh/fzf-git.sh"
+
+
+# main cli config
+autoload -Uz promptinit && promptinit
+prompt grml
+
 
 #######################
 ######## MISC #########
