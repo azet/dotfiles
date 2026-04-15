@@ -121,3 +121,6 @@
 [submodule "foreign/vim-janus"]
 	path = foreign/vim-janus
 	url = https://github.com/carlhuda/janus.git
+[submodule "foreign/fzf-tab-completion"]
+	path = foreign/fzf-tab-completion
+	url = https://github.com/lincheney/fzf-tab-completion

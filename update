@@ -34,7 +34,7 @@ blacklist=(.gitignore .gitmodules)
 }
 
 
-/usr/bin/env zsh -c "source ~/.zsh-plugins/zsh-snap/znap.zsh && znap pull && zprezto-update"
+/usr/bin/env zsh -c "source ~/.zsh-plugins/zsh-snap/znap.zsh && znap pull && znap clean && zprezto-update"
 
 printf "\tFINISHED UPDATING\n\n"
 
