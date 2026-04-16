@@ -623,7 +623,7 @@ export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
 export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border --margin=1 --padding=1 --style full --preview 'fzf-preview.sh {}' --bind 'focus:transform-header:file --brief {}'"
 
 ## fzf & tmux
-[[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "25%" --padding=1 --border=rounded --margin=0,1 --info=right --separator== --scrollbar=↓ --select-1 --exit-0'
+[[ -z "${TMUX}" ]] || alias fzf='fzf-tmux -x5 -h "55%" -w "65%" --padding=1 --border=rounded --margin=0,1 --info=right --separator== --scrollbar=↓ --select-1 --exit-0'
 
 ## find fzf supported dir/file based
 [[ ! -z "${TMUX}" ]] && \
