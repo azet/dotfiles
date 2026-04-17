@@ -63,7 +63,9 @@ printf "${CLI}> znap: zshell plugin mgr:  "
      git@github.com:sindresorhus/pure.git \
      git@github.com:ael-code/zsh-colored-man-pages.git \
      git@github.com:momo-lab/zsh-abbrev-alias.git \
-     git@github.com:Aloxaf/fzf-tab.git"
+     git@github.com:Aloxaf/fzf-tab.git \
+     git@github.com:zsh-users/zsh-autosuggestions.git"
+
 } && printf "[x]\n> znap ~~ status \t.\t.\t.\n${RST}" && /usr/bin/env zsh -c "source ~/.local/znap/znap.zsh && znap status" \
   || ( printf "${EXI}[-]\n! error downloading and setting znap !! EXITING !! \n\n${RST}" && exit 1 )
 
@@ -173,6 +175,5 @@ install_pkgs
 
 
 #XXX/TODO(azet): add python pips / ruby gems
-#XXX/TODO(azet): link all the things
 
 #EOF
