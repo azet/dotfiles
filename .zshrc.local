@@ -454,7 +454,7 @@ alias testroute=checkroute
 alias whois-recurse='whois -R -m -i -I '
 
 ### eject usb/sd/disk
-[[ ${__dot_operating_system} == "macos" ]] && alias eject='diskutil eject'
+[[ ${__dot_operating_system} == "macos" ]] || alias eject='diskutil eject'
 
 ## Debian
 ### packaging
