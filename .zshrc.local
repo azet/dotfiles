@@ -1,9 +1,26 @@
 # load useful zsh modules
-autoload -U zfinit
-zfinit
-zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
 # autoload builtin functions
+## azet: autoload specific zsh builtin functions for daily use
+
+# FTP
+zmodload zsh/zftp
+autoload -Uz zfinit
+zfinit
+
+# Math
+zmodload zsh/mathfunc
+
+# TCP
+zmodload zsh/net/tcp zsh/net/socket
+autoload -Uz tcp_open tcp_close tcp_read tcp_send tcp_log
+autoload -Uz tcp_point tcp_shoot
+
+# ZPTY
+zmodload zsh/zpty
+###
+
+
 
 ### zcompile.zsh
 ## via: https://gist.github.com/X4/6346787#file-zcompile-zsh
@@ -11,7 +28,7 @@ zmodload zsh/zftp zsh/net/tcp zsh/net/socket zsh/mathfunc zsh/zpty
 
 # Execute code that does not affect the current session in the background.
 {
-autoload -U zrecompile
+autoload -Uz zrecompile
 
 zrecompile -p -R ~/.zshrc -- -M ~/.zcompdump --  > /dev/null
 
@@ -234,7 +251,7 @@ fi
 ### TABCOMPLETE
 
 ## cli prediction
-autoload predict-on predict-off
+autoload -Uz predict-on predict-off
 function predict-toggle() {
   # via https://unix.stackexchange.com/questions/56281/command-line-prediction
   # good idea actually to use this toggle function, can be
@@ -279,7 +296,7 @@ bindkey -M menuselect '*' history-incremental-search-forward
 PERIOD=120; periodic() {
   echo ${HOST} $(uptime)
 }
-autoload periodic
+autoload -Uz periodic
 
 # userland-agnostic OS and distro detection.
 # comes in handy sometimes e.g. with minimal
