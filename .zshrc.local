@@ -3,18 +3,18 @@
 # autoload builtin functions
 ## azet: autoload specific zsh builtin functions for daily use
 
-# FTP
-zmodload zsh/zftp
-autoload -Uz zfinit
-zfinit
-
-# Math
-zmodload zsh/mathfunc
 
 # TCP
 zmodload zsh/net/tcp zsh/net/socket
 autoload -Uz tcp_open tcp_close tcp_read tcp_send tcp_log
 autoload -Uz tcp_point tcp_shoot
+
+# FTP
+zmodload zsh/zftp
+autoload -Uz zfinit && zfinit
+
+# Math
+zmodload zsh/mathfunc
 
 # ZPTY
 zmodload zsh/zpty
