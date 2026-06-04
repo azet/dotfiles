@@ -445,6 +445,8 @@ alias p=e
 alias peco='peco --prompt "peco >" -b 9999'
 alias bat='bat --theme zenburn'
 alias pre='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+# XXX/TODO(azet): make dependend on source code files
+#[[ ${bat} ]] || alias cat='bat'
 
 ## history
 alias history='history -i -50'
