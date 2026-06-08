@@ -653,7 +653,7 @@ znap source prezto \
 
 ## fzf completion options XXX/TODO(azet): needs to be tested
 export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
-#export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
+export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
 
 ## fzf default opts
 export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border=rounded --margin=1 --padding=1 --style full --preview 'fzf-preview.sh {}' \
