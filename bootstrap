@@ -76,6 +76,12 @@ printf "${CLI}> zsh prezto option (managed via znap in .zshrc.local):  "
 } && printf "[x]\n${RST}" \
   || ( printf "${EXI}[-]\n! error downloading and setting zsh prezto !! EXITING !! \n\n${RST}" && exit 1 )
 
+## foreign setups
+printf "${CLI}> setting up extra support tools for bat(1):${RST}"
+[[ ! -d "${__dot_foreign_path}/bat-extras" ]] || {
+  cd "${__dot_foreign_path}/bat-extras" ; ./build.sh &>/dev/null
+} && printf "\t[x]\n" \
+  || printf "${ERR}! ~ encountered problem setting up bat(1) support tools${RST}\n\n" 
 
 # VIM vi improved
 ## vim janus config
@@ -155,6 +161,7 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   }
   # and that's it for OS X - let's get on with installing packages
 }
+
 
 
 ## setup tmux specifics

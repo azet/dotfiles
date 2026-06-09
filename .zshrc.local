@@ -443,10 +443,7 @@ alias h='http'
 alias e='echo'
 alias p=e
 alias peco='peco --prompt "peco >" -b 9999'
-alias bat='bat --theme zenburn'
 alias pre='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
-# XXX/TODO(azet): make dependend on source code files
-#[[ ${bat} ]] || alias cat='bat'
 
 ## history
 alias history='history -i -50'
@@ -523,7 +520,9 @@ alias glf='git log --graph --abbrev-commit --decorate --date=relative --format=f
 ### git: diff beauty
 alias merge-diff='git diff --name-only --diff-filter=U'
 alias hist-diff='git diff --histogram --numstat'
-alias bat-diff='git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff'
+#alias bat-diff='git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff'
+alias batdiff='${__dot_foreign_path/bat-extras/src/batdiff.sh}'
+alias bat-diff=batdiff
 
 
 ## github
@@ -540,7 +539,13 @@ alias browse=web
 alias gist='gist-paste'
 
 ## pdf
-alias pdf='evince'
+alias pdf='evince || chrome'
+
+## man
+[[ -f "${__dot_foreign_path/bat-extras/src/batman.sh}" ]] && {
+  eval "$(batman --export-env)"
+  export MANPAGER="col -b | BAT_THEME='Dracula' bat --language man -p -f"
+}
 
 ## chrome
 alias chrome='google-chrome'
@@ -557,27 +562,30 @@ alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
 
 ## 'less' with syntax highlighting
 function less_highlight() {
-  case ${@} in
+  case "${@}" in
   *.html|*.css|*.tex|*.c|*.cpp|*.py|*.rb|*.php|*.lua|*.sh|*.bash|*.zsh|\
-  *.rs|*.ocaml|*.md|*.swift|*.go|*.asm|*.h|*.hpp|*.r|*.m|*.rst|*.pl)
+  *.rs|*.ocaml|*.swift|*.go|*.asm|*.h|*.hpp|*.r|*.m|*.rst|*.pl)
     LESS=" -RN" LESSOPEN="| highlight %s --out-format xterm256 --quiet \
       --force --style solarized-dark " less ${@}
   ;;
-  *) less ${@} ;;
+  *.md) glow ${@} ;;
+  *) [[ "${bat}" ]] && bat ${@} || less ${@} ;;
   esac
 };
+# XXX/TODO(azet): make dependend on source code files
+#[[ ${bat} ]] || alias cat='bat'
 alias less='eval less_highlight'
 alias more=less
 
 ## 'open' shortcut
 [[ ${__dot_operating_system} == "macosx" ]] || function open() {
-  case ${1} in
+  case "${1}" in
   *.html)     chrome ${1}       ;;
   *.pdf)      pdf ${1}          ;;
   *.png  |\
   *.jpg  |\
-  *.jpeg |\
   *.gif)      ristretto ${1} &  ;;
+  *.jpeg |\
   *)
     [[ $(file -bi ${1}) == *binary* ]] || vim ${1}
   ;;
@@ -699,7 +707,7 @@ zstyle ':completion:*' menu no
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':completion:*' fzf-completion-secondary-color red
+zstyle ':completion:*' fzf-completion-secondary-color magenta
 ## preview a `git status` when completing git add
 #zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
 
