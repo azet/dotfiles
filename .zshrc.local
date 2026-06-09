@@ -524,6 +524,9 @@ alias hist-diff='git diff --histogram --numstat'
 alias batdiff='${__dot_foreign_path/bat-extras/src/batdiff.sh}'
 alias bat-diff=batdiff
 
+[[ -d "${__dot_foreign_path/fzf-git.sh}" ]] && {
+  source ${__dot_foreign_path/fzf-git.sh/fzf-git.sh}
+}
 
 ## github
 alias hub='${__dot_foreign_path}/hub/hub'
