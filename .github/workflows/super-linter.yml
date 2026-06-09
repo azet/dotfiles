@@ -12,17 +12,16 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  run-lint-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-        with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 4
-          
-    run-lint-osx:
-      runs-on: macosx-latest
+  example_matrix:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        runs-on: ${{ matrix.os }}
+      steps:
+        - uses: actions/checkout@v6
+          with:
+            fetch-depth: 2
+        - run: git checkout HEAD^
       steps:
         - name: Checkout code
           uses: actions/checkout@v6
