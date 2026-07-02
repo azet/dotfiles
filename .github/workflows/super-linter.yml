@@ -28,7 +28,7 @@ jobs:
             # Full git history is needed to get a proper list of changed files within `super-linter`
             fetch-depth: 4           
         - name: Super-Linter
-          uses: super-linter/super-linter@v8.6.0 # x-release-please-version
+          uses: super-linter/super-linter
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             # Set your fix mode variables to true
