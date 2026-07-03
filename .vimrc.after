@@ -1,5 +1,4 @@
 " azet's basic vimrc
- 
 set nocompatible
 filetype off
 
@@ -12,6 +11,8 @@ set pastetoggle=<F2>
 set showmode
 set dir=$HOME/.tmp
 
+execute pathogen#infect()
+filetype plugin indent on
 
 set shiftwidth=2 smarttab
 set expandtab

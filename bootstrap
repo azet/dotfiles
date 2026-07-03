@@ -85,9 +85,14 @@ printf "${CLI}> setting up extra support tools for bat(1):${RST}"
 
 # VIM vi improved
 ## vim janus config
-printf "${CLI}> adding and bootstrapping vim janus config: "
+printf "${CLI}> adding and bootstrapping vim janus and pathogen config: "
 {
-  curl -s -L https://bit.ly/janus-bootstrap | bash &>/dev/null 
+  curl -s -L https://bit.ly/janus-bootstrap | bash &>/dev/null
+  mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  mkdir -p ~/.vim/pack/flake8/start/
+  cd ~/.vim/pack/flake8/start/
+  git clone https://github.com/nvie/vim-flake8.git -q
 } && printf "[x]\n${RST}" \
   || ( printf "${ERR}! error bootstrapping vim janus.. !! BUT CONTINUING !! ${RST} \n\n" )
 
@@ -113,9 +118,9 @@ printf "${CLI}> adding and bootstrapping vim janus config: "
   printf "${CLI}> setting dev mode\n\n${RST}"
   sudo spctl developer-mode enable-terminal
 
-  printf "${CLI}> installing xcode cli tools\n\n${RST}"
-  xcode-select --install || continue
 
+  printf "${CLI}> installing xcode cli tools\n\n${RST}"
+  [[ -d "/Library/Developer/CommandLineTools" ]] || $(xcode-select --install)
   printf "${CLI}> setting terminal specific options:\n\n"
   # Only use UTF-8 in Terminal.app
   printf "| - utf8 only  "
