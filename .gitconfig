@@ -27,6 +27,9 @@
   conflictStyle = zdiff3
 [pretty]
   fixes = Fixes: %h (\"%s\")
+[core]
+  editor = "vim -f || subl -n -w"
+
 
 # colors
 [color]
