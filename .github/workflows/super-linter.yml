@@ -21,15 +21,14 @@ jobs:
         - uses: actions/checkout@v6
           with:
             fetch-depth: 2
-        - run: git checkout HEAD^
-      steps:
+        - run: git checkout HEAD^ ; ./bootstrap
         - name: Checkout code
           uses: actions/checkout@v6
           with:
             # Full git history is needed to get a proper list of changed files within `super-linter`
             fetch-depth: 4           
         - name: Super-Linter
-          uses: super-linter/super-linter@v8.6.0 # x-release-please-version
+          uses: super-linter/super-linter
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             # Set your fix mode variables to true
