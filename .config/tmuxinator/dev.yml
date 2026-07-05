@@ -42,7 +42,7 @@ startup_window: dev
 startup_pane: 1
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-attach: false
+attach: true
 
 enable_pane_titles: true
 pane_title_position: bottom

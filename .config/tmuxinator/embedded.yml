@@ -39,7 +39,7 @@ root: ~/embedded
 # startup_window: editor
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
-startup_pane: systat
+startup_pane: work
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 attach: true
@@ -57,10 +57,5 @@ windows:
         - vim
   - shell:
     - zsh
-  - sysstat:
-       layout: main-vertical
-       panes:
-        - "nettop -cd"
-        - "mtr 1.1 -tezi 0.5 -b -Q1"
-        - "btop || glances"
+    - zsh
 
