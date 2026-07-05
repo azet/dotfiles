@@ -27,10 +27,10 @@ blacklist=(.gitignore .gitmodules)
   done ; echo
 
 [[ $(is_os?) == "macosx" ]] && {
-  brew update -q --auto-update --merge
+  brew update -q --auto-update 
   brew upgrade -gvi --ask --require-sha
   brew cleanup -sv
-  brew doctor -vD
+  brew doctor -vDd
 }
 
 
