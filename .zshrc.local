@@ -1,52 +1,44 @@
 # load useful zsh modules
 
 # autoload builtin functions
-## azet: autoload specific zsh builtin functions for daily use
-
+## XXX/TODO(azet): autoload specific zsh builtin functions for daily use
 
 # TCP
 zmodload zsh/net/tcp zsh/net/socket
 autoload -Uz tcp_open tcp_close tcp_read tcp_send tcp_log
 autoload -Uz tcp_point tcp_shoot
-
 # FTP
 zmodload zsh/zftp
 autoload -Uz zfinit && zfinit
-
 # Math
 zmodload zsh/mathfunc
-
 # ZPTY
 zmodload zsh/zpty
-###
-
-
 
 ### zcompile.zsh
 ## via: https://gist.github.com/X4/6346787#file-zcompile-zsh
 ###
 
 # Execute code that does not affect the current session in the background.
-{
-autoload -Uz zrecompile
-
-zrecompile -p -R ~/.zshrc -- -M ~/.zcompdump --  > /dev/null
-
-for ((i=1; i <= $#fpath; ++i)); do
-  dir=$fpath[i]
-  zwc=${dir:t}.zwc
-  if [[ $dir == (.|..) || $dir == (.|..)/* ]]; then
-    continue
-  fi
-  files=($dir/*(N-.))
-  if [[ -w $dir:h && -n $files ]]; then
-    files=(${${(M)files%/*/*}#/})
-    if ( cd $dir:h &&
-         zrecompile -p -U -z $zwc $files ); then
-      fpath[i]=$fpath[i].zwc
+function () {
+  # recompile (for zrecompile.zsh at :20)
+  autoload -Uz zrecompile
+  zrecompile -p -R ~/.zshrc -- -M ~/.zcompdump --  > /dev/null
+  for ((i=1; i <= $#fpath; ++i)); do
+    dir=$fpath[i]
+    zwc=${dir:t}.zwc
+    if [[ $dir == (.|..) || $dir == (.|..)/* ]]; then
+      continue
     fi
-  fi
-done
+    files=($dir/*(N-.))
+    if [[ -w $dir:h && -n $files ]]; then
+      files=(${${(M)files%/*/*}#/})
+      if ( cd $dir:h &&
+           zrecompile -p -U -z $zwc $files ); then
+        fpath[i]=$fpath[i].zwc
+      fi
+    fi
+  done
 } &!
 
 #{
@@ -224,8 +216,8 @@ man_glob () {
 compctl -K man_glob -x 'C[-1,-P]' -m - 'R[-*l*,;]' -g '*.(man|[0-9nlpo](|[a-z]))' + -g '*(-/)' -- man
 
 # Tools - host completion for a few commands
-compctl -k hosts ftp lftp ncftp ssh w3m lynx links elinks nc telnet rlogin host
-compctl -k hosts -P '@' finger
+compctl -k hosts ftp lftp ncftp ssh w3m lynx links elinks nc telnet rlogin host socat
+compctl -k hosts -P '@' finger ssh scp
 
 ## correction
 # some people don't like the automatic correction - so run 'NOCOR=1 zsh' to deactivate it
@@ -321,18 +313,63 @@ function detect_distro() {
     printf "rh"
   ;;
   esac
+  # globals relating to dotfiles
+  export __dot_operating_system="$(detect_os)"
+  export __dot_os_distribution="$(detect_distro)"
+  export __dot_foreign_path="${HOME}/dotfiles/foreign"
   return
 }
 
-# globals relating to dotfiles
-export __dot_operating_system="$(detect_os)"
-export __dot_os_distribution="$(detect_distro)"
-export __dot_foreign_path="${HOME}/dotfiles/foreign"
+
+# prezto in case of prezto only operation (znap preferred as of 2026)
+#zstyle ':prezto:load' pmodule 'environment' 'terminal' 'archive' 'command-not-found' 'homebrew' 'osx' 'python' 'rsync' 'screen' 'tmux' 'ssh' 'utility'
+
+function () {
+  # znap - zsh repo pkg manager (simpler than git submodules/trees and building)
+
+  source ~/.local/znap/znap.zsh
+  mkdir -p "~/.local/znap/plugins"
+
+  zstyle ':znap:*' repos-dir < "~/.local/znap/plugins"
+}
+
+#
+# XXX/TODO(azet): switch to zplug instesad of znap (most likely)
+#
+
+znap source zsh-autosuggestions
+znap source zsh-syntax-highlighting
+znap source zsh-vim-mode
+znap source zsh-completions
+znap source zsh-async
+znap source z
+znap source zsh-colored-man-pages
+znap source zsh-abbrev-alias
+znap source fzf-tab
+znap source prezto
+znap source prezto \
+  modules/helper \
+  modules/completion \
+  modules/environment \
+  modules/terminal \
+  modules/editor \
+  modules/history \
+  modules/directory \
+  modules/syntax-highlighting \
+  modules/homebrew \
+  modules/osx \
+  modules/python \
+  modules/rsync \
+  modules/screen \
+  modules/tmux \
+  modules/ssh \
+  modules/utility
+
 
 # direct command line support for vi/vim
 ## vi line editing mode
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=10
 
 ## remap important key-bindings
 bindkey '^L' clear-screen
@@ -348,6 +385,7 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^O' copy-prev-shell-word
 bindkey '^X' predict-toggle
 bindkey '^[OM' send-break
+bindkey '^T' toggle-fzf-tab
 
 ## esc+e edits current line in `vim(1)`
 bindkey -M vicmd e edit-command-line
@@ -359,6 +397,30 @@ function zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+## advanced shit here
+setopt PROMPT_SUBST
+RPS1='${MODE_INDICATOR_PROMPT} ${vcs_info_msg_0_}'
+
+VIM_MODE_VICMD_KEY='^D'
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+ZVM_OPEN_URL_CMD='open -a "Google Chrome" || chrome'
+ZVM_OPEN_FILE_CMD='vim'
+ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_DEFAULT #DEFAULT=NEX instead of ZLE better
+MODE_CURSOR_VIINS="#00ff00 blinking bar"
+MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
+MODE_CURSOR_VICMD="green block"
+MODE_CURSOR_SEARCH="#ff00ff steady underline"
+MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
+MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
+MODE_INDICATOR_VIINS='%F{15}<%F{8}INSERT<%f'
+MODE_INDICATOR_VICMD='%F{10}<%F{2}NORMAL<%f'
+MODE_INDICATOR_REPLACE='%F{9}<%F{1}REPLACE<%f'
+MODE_INDICATOR_SEARCH='%F{13}<%F{5}SEARCH<%f'
+MODE_INDICATOR_VISUAL='%F{12}<%F{4}VISUAL<%f'
+MODE_INDICATOR_VLINE='%F{12}<%F{4}V-LINE<%f'
+TMUX_PASSTHROUGH=1
+
 
 # shell history settings
 HISTSIZE=10000
@@ -437,7 +499,13 @@ alias la=ll
 alias lsgrep=lgrep
 alias lgrep="ls | grep -i"
 
-## line tools
+function scp() {
+      for arg; do
+          [[ $arg == *:* ]] && /usr/bin/scp $@
+          return
+      done ; echo "No colon in SCP call."
+}
+
 alias v='less'
 alias h='http'
 alias e='echo'
@@ -616,46 +684,6 @@ bindkey '^X^R' fzf-history-widget-accept
 	source "${__dot_foreign_path}/zsh-history-substring-search/zsh-history-substring-search.zsh"
 [[ -f "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
 	source "${__dot_foreign_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# prezto in case of prezto only operation (znap preferred as of 2026)
-#zstyle ':prezto:load' pmodule 'environment' 'terminal' 'archive' 'command-not-found' 'homebrew' 'osx' 'python' 'rsync' 'screen' 'tmux' 'ssh' 'utility'
-
-# znap - zsh repo pkg manager (simpler than git submodules/trees and building)
-source ~/.local/znap/znap.zsh
-mkdir -p "~/.local/znap/plugins"
-zstyle ':znap:*' repos-dir < "~/.local/znap/plugins"
-
-#
-# XXX/TODO(azet): switch to zplug instesad of znap (most likely)
-#
-
-
-znap source zsh-completions
-znap source zsh-syntax-highlighting
-znap source zsh-async
-znap source z
-znap source zsh-colored-man-pages
-znap source zsh-abbrev-alias
-znap source fzf-tab
-znap source zsh-autosuggestions
-znap source prezto
-znap source prezto \
-  modules/helper \
-  modules/completion \
-  modules/environment \
-  modules/terminal \
-  modules/editor \
-  modules/history \
-  modules/directory \
-  modules/syntax-highlighting \
-  modules/homebrew \
-  modules/osx \
-  modules/python \
-  modules/rsync \
-  modules/screen \
-  modules/tmux \
-  modules/ssh \
-  modules/utility
 
 
 ## fzf & tmux

@@ -1,5 +1,7 @@
 " azet's basic vimrc
 set nocompatible
+" so macosx doesn't exit with error
+filetype on
 filetype off
 
 syntax on
@@ -17,3 +19,54 @@ filetype plugin indent on
 set shiftwidth=2 smarttab
 set expandtab
 set tabstop=4 softtabstop=0
+
+" zsh switch from editor to 'NORMAL' mode with ctrl+d
+inoremap <C-d> <Esc>
+
+
+" Vundle plugin manager
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" python chrecking
+Plugin 'nvie/vim-flake8'
+
+filetype plugin on
+
+let g:flake8_quickfix_location="topleft"
+let g:flake8_quickfix_height=7
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8,mccabe,frosted'
+let g:PyFlakeDefaultComplexity=1
+let g:PyFlakeDisabledMessages = 'E501'
+let g:PyFlakeAggressive = 0
+let g:PyFlakeCWindow = 6
+let g:PyFlakeSigns = 1
+let g:PyFlakeSignStart = 1
+let g:PyFlakeMaxLineLength = 120
+let g:PyFlakeRangeCommand = 'Q'
+let g:PyFlakeForcePyVersion = 3
+
+
+"EOF
