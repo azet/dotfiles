@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+while true; do  for x in $(docker ps -asq); { docker top ${x}; sleep 2; continue; }; done
