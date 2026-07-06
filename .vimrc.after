@@ -27,18 +27,18 @@ inoremap <C-d> <Esc>
 " Vundle plugin manager
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+": call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+"call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList          - list configured plugins
@@ -50,7 +50,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " python chrecking
-Plugin 'nvie/vim-flake8'
+" Plugin 'nvie/vim-flake8'
 
 filetype plugin on
 

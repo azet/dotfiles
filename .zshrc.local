@@ -21,7 +21,7 @@ zmodload zsh/zpty
 
 # Execute code that does not affect the current session in the background.
 function () {
-  # recompile (for zrecompile.zsh at :20)
+# recompile (for zrecompile.zsh at :20)
   autoload -Uz zrecompile
   zrecompile -p -R ~/.zshrc -- -M ~/.zcompdump --  > /dev/null
   for ((i=1; i <= $#fpath; ++i)); do
