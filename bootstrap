@@ -82,9 +82,19 @@ printf "${CLI}> setting up extra support tools for bat(1):${RST}"
 [[ ! -d "${__dot_foreign_path}/bat-extras" ]] || {
   cd "${__dot_foreign_path}/bat-extras" ; ./build.sh &>/dev/null
 } && printf "\t[x]\n" \
-  || printf "${ERR}! ~ encountered problem setting up bat(1) support tools${RST}\n\n" 
+  || printf "${ERR}! ~ encountered problem setting up bat(1) support tools}\n\n"
 
 # VIM vi improved
+## manually install vim due to python3 requirement for some plugins
+printf "${CLI}> manually compiling vim due to python3 requirements:"
+[[ "$(vim --version | grep -i python3)" == *"python3"* ]] &&  {
+  cd foreign/vim
+  ./configure --with-features=huge --enable-python3inter &>/dev/null
+  make -j ${__dot_jobs} &>/dev/null
+  sudo make install &>/dev/null
+} &&  printf "\t[x]\n" \
+  || ( printf "${ERR} error compiling  vim.. !! BUT CONTINUING !! ${RST}\n\n")
+
 ## vim janus config
 printf "${CLI}> adding and bootstrapping vim janus and pathogen config: "
 {

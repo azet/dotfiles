@@ -130,3 +130,6 @@
 [submodule "foreign/bat-extras"]
 	path = foreign/bat-extras
 	url = https://github.com/eth-p/bat-extras.git
+[submodule "foreign/vim"]
+	path = foreign/vim
+	url = https://github.com/vim/vim.git
