@@ -41,8 +41,10 @@ Plugin 't9md/vim-choosewin'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nvie/vim-flake8'
 Plugin 'justincampbell/vim-eighties'
-Plugin 'valloric/youcompleteme'
 Plugin 'urbainvaes/vim-tmux-pilot'
+Plugin 'anschnapp/move-less'
+Plugin 'alok/notational-fzf-vim'
+
 
 
 " colorschemes
@@ -96,6 +98,51 @@ let g:PyFlakeSignStart = 1
 let g:PyFlakeMaxLineLength = 120
 let g:PyFlakeRangeCommand = 'Q'
 let g:PyFlakeForcePyVersion = 3
+
+
+" fzf-vim
+let g:nv_search_paths = ['~/work', '~/embedded', '~/Documents', '~/Google\ Drive']
+" String. Default is first directory found in `g:nv_search_paths`. Error thrown
+"if no directory found and g:nv_main_directory is not specified
+"let g:nv_main_directory = g:nv_main_directory or (first directory in g:nv_search_paths)
+
+" Dictionary with string keys and values. Must be in the form 'ctrl-KEY':
+" 'command' or 'alt-KEY' : 'command'. See examples below.
+let g:nv_keymap = {
+                    \ 'ctrl-s': 'split ',
+                    \ 'ctrl-v': 'vertical split ',
+                    \ 'ctrl-t': 'tabedit ',
+                    \ }
+
+" String. Must be in the form 'ctrl-KEY' or 'alt-KEY'
+let g:nv_create_note_key = 'ctrl-x'
+
+" String. Controls how new note window is created.
+let g:nv_create_note_window = 'vertical split'
+
+" Boolean. Show preview. Set by default. Pressing Alt-p in FZF will toggle this for the current search.
+let g:nv_show_preview = 1
+
+" Boolean. Respect .*ignore files in or above nv_search_paths. Set by default.
+let g:nv_use_ignore_files = 1
+
+" Boolean. Include hidden files and folders in search. Disabled by default.
+let g:nv_include_hidden = 0
+
+" Boolean. Wrap text in preview window.
+let g:nv_wrap_preview_text = 1
+
+" String. Width of window as a percentage of screen's width.
+let g:nv_window_width = '40%'
+
+" String. Determines where the window is. Valid options are: 'right', 'left', 'up', 'down'.
+let g:nv_window_direction = 'down'
+
+" String. Command to open the window (e.g. `vertical` `aboveleft` `30new` `call my_function()`).
+let g:nv_window_command = 'call my_function()'
+
+" Float. Width of preview window as a percentage of screen's width. 50% by default.
+let g:nv_preview_width = 50
 
 
 "EOF
