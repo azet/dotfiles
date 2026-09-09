@@ -531,6 +531,10 @@ alias id='id; echo; getent passwd ${UID}'
 alias mtr='sudo mtr -o "LV G SRD NBWA IJMX" --curses --displaymode 2'
 alias checkroute='mtr 8.8.8.8 -tezi "0.5" -s "-1" -Q1 --ipinfo 1'
 alias testroute=checkroute
+alias filesize='du -Hc -d3 -- * | sort -h'
+alias filesizes=filesize
+alias size=filesize
+
 
 [[ ${__dot_operating_system} == "macos" ]] && {
   alias whois='whois -R '
@@ -700,11 +704,11 @@ export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border=rounded --margi
 
 ## find fzf supported dir/file based
 [[ ! -z "${TMUX}" ]] && \
-  alias fzind="find * &>/dev/null | fzf-tmux -x5 -h '65%' -w '60%' --prompt 'All> ' --reverse --border --padding 5 --margin 1 \
+  alias fzind="find * | fzf-tmux -x5 -h '65%' -w '60%' --prompt 'All> ' --reverse --border --padding 5 --margin 1 \
              --header 'CTRL-D: Directories / CTRL-F: Files' \
              --bind 'ctrl-d:change-prompt(Directories> )+reload(find * -type d)' \
-             --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' --multi --bind 'enter:become(open {+})' \
-             --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort'" \
+             --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' --multi --bind 'enter:become(open {+})'     \
+             --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort,f3:execute(du -H -d3 -- * | sort -h)' \
                      || \
   alias fzind="find * &>/dev/null | fzf --prompt 'All> ' --reverse --padding 2 --margin 5 \
             --border=rounded --separator== --scrollbar=↓ \

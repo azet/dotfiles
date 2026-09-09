@@ -49,3 +49,13 @@
   changed = yellow
   untracked = ul cyan
   branch = cyan
+
+# --- Enforce SSH (recovered from a stray ~/.git file, 2026-08-01) ---
+# This lived in ~/.git, which git tried to parse as a GITFILE (expects
+# "gitdir: <path>") and failed on -- breaking every git command under $HOME.
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[url "ssh://git@gitlab.com/"]
+  insteadOf = https://gitlab.com/
+[url "ssh://git@bitbucket.org/"]
+  insteadOf = https://bitbucket.org/
