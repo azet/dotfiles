@@ -224,21 +224,21 @@ compctl -k hosts -P '@' finger ssh scp
 if [[ "$NOCOR" -gt 0 ]] ; then
     zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _files _ignored
     setopt nocorrect
-else
-    # try to be smart about when to use what completer...
-    setopt correct
-    zstyle -e ':completion:*' completer '
-	if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
-	    _last_try="$HISTNO$BUFFER$CURSOR"
-	    reply=(_complete _match _ignored _prefix _files)
-	else
-	    if [[ $words[1] == (rm|mv) ]] ; then
-		reply=(_complete _files)
-	    else
-		reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
-	    fi
-	fi'
-fi
+#else
+#    # try to be smart about when to use what completer...
+#    setopt correct
+#    zstyle -e ':completion:*' completer '
+#	if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
+#	    _last_try="$HISTNO$BUFFER$CURSOR"
+#	    reply=(_complete _match _ignored _prefix _files)
+#	else
+#	    if [[ $words[1] == (rm|mv) ]] ; then
+#		reply=(_complete _files)
+#	    else
+#		reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
+#	    fi
+#	fi'
+#fi
 
 ### TABCOMPLETE
 
@@ -426,6 +426,9 @@ TMUX_PASSTHROUGH=1
 HISTSIZE=10000
 SAVEHIST=10000
 
+autoload -U history_enquire
+history_enquire
+
 autoload -Uz quote-and-complete-word
 zle -N quote-and-complete-word
 
@@ -461,6 +464,14 @@ export PATH=${PATH}:${HOME}/packer
   export PATH=${PATH}:/usr/local/bin
   export PATH=${PATH}:/usr/local/sbin
   export HOMEBREW_NO_ENV_HINTS=1
+
+  # via https://formulae.brew.sh/formula/zsh-completions
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
 }
 
 ## PATHs for various tools copied to /opt/bin and /opt/sbin
@@ -708,7 +719,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border=rounded --margi
              --header 'CTRL-D: Directories / CTRL-F: Files' \
              --bind 'ctrl-d:change-prompt(Directories> )+reload(find * -type d)' \
              --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' --multi --bind 'enter:become(open {+})'     \
-             --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort,f3:execute(du -H -d3 -- * | sort -h)' \
+             --bind 'f1:execute(vim {}),f2:execute-silent(cat {} | pbcopy)+abort,f3:execute(du -H -d3 -- * | sort -h)'" \
                      || \
   alias fzind="find * &>/dev/null | fzf --prompt 'All> ' --reverse --padding 2 --margin 5 \
             --border=rounded --separator== --scrollbar=↓ \
@@ -764,7 +775,7 @@ prompt grml
 
 # external cli command completion support
 ## Google Compute Engine
-[[ -d ${HOME}/google-cloud-sdk ]] && {
+[[ -d "${HOME}/google-cloud-sdk" ]] && {
   source "${HOME}/google-cloud-sdk/path.zsh.inc"
   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 }
