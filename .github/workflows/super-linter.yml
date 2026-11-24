@@ -21,7 +21,7 @@ jobs:
         - uses: actions/checkout@v6
           with:
             fetch-depth: 2
-        - run: git checkout HEAD^ ; ./bootstrap
+        - run: git checkout HEAD^ ; ./bootstrap ; go install github.com/z-shell/zsh-lint/cmd/zsh-lint@v1.6.1 ; "$(go env GOPATH)/bin/zsh-lint .zshrc.local"
         - name: Checkout code
           uses: actions/checkout@v6
           with:
