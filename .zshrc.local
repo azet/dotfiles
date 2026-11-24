@@ -574,9 +574,14 @@ zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c col
 
 ## fzf file browser
 [[ -d "${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/" ]] && {
+    alias fzfgh='export FZFGH_USER=azet && ${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfgh'
     alias fzfe='${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfe'
     alias fzfbrowse=fzfe
+    alias fzfk='${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfk'
+    alias fzfk8s=fzfk
+    alias fzfvault='${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfvault'
 }
+
 
 # End
 ## main cli config
