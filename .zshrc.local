@@ -582,6 +582,8 @@ zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c col
     alias fzfvault='${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfvault'
 }
 
+# use z aka zoxide if available
+[[ "$(zoxide &>/dev/null)" ]] && source (zoxide init zsh)
 
 # End
 ## main cli config

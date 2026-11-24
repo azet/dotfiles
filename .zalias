@@ -45,7 +45,7 @@ alias testroute=checkroute
 alias filesize='du -Hc -d3 -- * | sort -h'
 alias filesizes=filesize
 alias size=filesize
-
+alias diskspace='ncdu'
 
 [[ ${__dot_operating_system} == "macos" ]] && {
   alias whois='whois -R '
