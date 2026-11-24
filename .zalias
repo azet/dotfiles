@@ -1,0 +1,182 @@
+# .zalias
+# > zshrc.local alias file
+# > to be sourced from rc
+
+## navigation
+alias ll='ls -larthik'
+alias l=ll
+alias la=ll
+alias lsgrep=lgrep
+alias lgrep="ls | grep -i"
+
+function scp() {
+      for arg; do
+          [[ $arg == *:* ]] && /usr/bin/scp $@
+          return
+      done ; echo "No colon in SCP call."
+}
+
+alias v='less'
+alias h='http'
+alias e='echo'
+alias p=e
+alias peco='peco --prompt "peco >" -b 9999'
+alias pre='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+## history
+alias history='history -i -50'
+alias hist=history
+
+## buitins, coreutils, system tools
+alias f='file'
+alias s='find -type f | peco'
+alias shares='/media/mount'
+alias top='htop || top'
+alias systop='btop || glances'
+alias load='sar 1 3'
+[[ ${__dot_operating_system} == "linux" ]] && {
+  alias net='getent networks; echo; ip netconf; \
+             echo; ip neigh; echo; ip route; echo; ip a'
+}
+alias id='id; echo; getent passwd ${UID}'
+alias mtr='sudo mtr -o "LV G SRD NBWA IJMX" --curses --displaymode 2'
+alias checkroute='mtr 8.8.8.8 -tezi "0.5" -s "-1" -Q1 --ipinfo 1'
+alias testroute=checkroute
+alias filesize='du -Hc -d3 -- * | sort -h'
+alias filesizes=filesize
+alias size=filesize
+
+
+[[ ${__dot_operating_system} == "macos" ]] && {
+  alias whois='whois -R '
+}
+alias whois-recurse='whois -R -m -i -I '
+
+### eject usb/sd/disk
+[[ ${__dot_operating_system} == "macos" ]] || alias eject='diskutil eject'
+
+## Debian
+### packaging
+alias dquilt='QUILT_PATCHES=debian/patches quilt'
+
+### apt
+alias agi='sudo apt-get install -y'
+alias agr='sudo apt-get remove -y'
+alias agu='sudo apt-get update'
+alias aguu='sudo apt-get upgrade'
+
+## gpg
+alias keysearch=searchkey
+alias searchkey='gpg --search-keys'
+alias sign='gpg --clearsign'
+alias keyshow=showkey
+function showkey() {
+  [[ -z "${1}" ]] && return 1
+  gpg --export --armor "${1}"
+  gpg -k --fingerprint "${1}"
+}
+
+## git
+### git: shorthands for repositories
+alias checkout='git checkout'
+alias push='gp'
+alias pull='git pull'
+alias amend='git commit -a --amend'
+alias status='git status'
+
+### git: shortcuts for the super-lazy
+alias gp='git push'
+alias gc='git clone'
+alias gpt='git push --tags'
+alias gpa='git push --all'
+alias gpf='git push --force'
+alias glp='git log --pretty=oneline'
+
+### git: adv. log display, grep/search and filtering
+alias glpd='git log --graph --all --decorate --name-status'
+alias glpp='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias glpf='git log --name-status --pretty --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias glpg='git log --name-status --pretty --graph --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all -i --grep'
+alias glps=glpg
+alias glf='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all --diff-filter'
+
+### git: diff beauty
+alias merge-diff='git diff --name-only --diff-filter=U'
+alias hist-diff='git diff --histogram --numstat'
+#alias bat-diff='git diff --name-only --relative --diff-filter=d -z | xargs -0 bat --diff'
+alias batdiff='${__dot_foreign_path/bat-extras/src/batdiff.sh}'
+alias bat-diff=batdiff
+
+[[ -d "${__dot_foreign_path/fzf-git.sh}" ]] && {
+  source ${__dot_foreign_path/fzf-git.sh/fzf-git.sh}
+}
+
+## github
+alias hub='${__dot_foreign_path}/hub/hub'
+alias github=hub
+function github_page() {
+  [[ -d ".git/" && $(grep 'github' .git/config) ]] || return 1
+  hub browse &>/dev/null
+}
+alias web='eval github_page'
+alias browse=web
+
+## gist
+alias gist='gist-paste'
+
+## pdf
+alias pdf='evince || chrome'
+
+## man
+[[ -f "${__dot_foreign_path/bat-extras/src/batman.sh}" ]] && {
+  eval "$(batman --export-env)"
+  export MANPAGER="col -b | BAT_THEME='Dracula' bat --language man -p -f"
+}
+
+## chrome
+alias chrome='google-chrome'
+
+## sublime text
+alias sublime=' ~/sublime/sublime_text &'
+alias sublimetext=sublime
+
+## kexec
+alias kreboot='sudo ${__dot_foreign_path}/kexec-reboot/kexec-reboot -vi'
+
+## screenshot
+alias screenshot='import ~/Desktop/scr-$(date --rfc-3339=date)_${RANDOM}.png'
+
+## 'less' with syntax highlighting
+function less_highlight() {
+  case "${@}" in
+  *.html|*.css|*.tex|*.c|*.cpp|*.py|*.rb|*.php|*.lua|*.sh|*.bash|*.zsh|\
+  *.rs|*.ocaml|*.swift|*.go|*.asm|*.h|*.hpp|*.r|*.m|*.rst|*.pl)
+    LESS=" -RN" LESSOPEN="| highlight %s --out-format xterm256 --quiet \
+      --force --style solarized-dark " less ${@}
+  ;;
+  *.md) glow ${@} ;;
+  *) [[ "${bat}" ]] && bat ${@} || less ${@} ;;
+  esac
+};
+# XXX/TODO(azet): make dependend on source code files
+#[[ ${bat} ]] || alias cat='bat'
+alias less=less_highlight
+alias more=less
+
+## 'open' shortcut
+[[ ${__dot_operating_system} == "macosx" ]] || function open() {
+  case "${1}" in
+  *.html)     chrome ${1}       ;;
+  *.pdf)      pdf ${1}          ;;
+  *.png  |\
+  *.jpg  |\
+  *.gif)      ristretto ${1} &  ;;
+  *.jpeg |\
+  *)
+    [[ $(file -bi ${1}) == *binary* ]] || vim ${1}
+  ;;
+  esac
+}
+
+
+#EOF

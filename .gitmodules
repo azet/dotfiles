@@ -133,3 +133,6 @@
 [submodule "foreign/vim"]
 	path = foreign/vim
 	url = https://github.com/vim/vim.git
+[submodule "foreign/dotfiles-recoberger-fzf.local"]
+	path = foreign/dotfiles-recoberger-fzf.local
+	url = https://github.com/azet/dotfiles-ricoberger-fzf.local.git
