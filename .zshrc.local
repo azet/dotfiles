@@ -224,23 +224,7 @@ compctl -k hosts -P '@' finger ssh scp
 if [[ "$NOCOR" -gt 0 ]] ; then
     zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _files _ignored
     setopt nocorrect
-#else
-#    # try to be smart about when to use what completer...
-#    setopt correct
-#    zstyle -e ':completion:*' completer '
-#	if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
-#	    _last_try="$HISTNO$BUFFER$CURSOR"
-#	    reply=(_complete _match _ignored _prefix _files)
-#	else
-#	    if [[ $words[1] == (rm|mv) ]] ; then
-#		reply=(_complete _files)
-#	    else
-#		reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
-#	    fi
-#	fi'
-#fi
-
-### TABCOMPLETE
+fi
 
 ## cli prediction
 autoload -Uz predict-on predict-off
@@ -312,13 +296,12 @@ function detect_distro() {
   *"Red Hat"* | *CentOS*)
     printf "rh"
   ;;
-  esac
-  # globals relating to dotfiles
-  export __dot_operating_system="$(detect_os)"
-  export __dot_os_distribution="$(detect_distro)"
-  export __dot_foreign_path="${HOME}/dotfiles/foreign"
-  return
+  esac ; return
 }
+# globals relating to dotfiles
+export __dot_operating_system="$(detect_os)"
+export __dot_os_distribution="$(detect_distro)"
+export __dot_foreign_path="${HOME}/dotfiles/foreign"
 
 
 # prezto in case of prezto only operation (znap preferred as of 2026)
@@ -426,8 +409,7 @@ TMUX_PASSTHROUGH=1
 HISTSIZE=10000
 SAVEHIST=10000
 
-autoload -U history_enquire
-history_enquire
+autoload -U history-pattern-search
 
 autoload -Uz quote-and-complete-word
 zle -N quote-and-complete-word
@@ -592,8 +574,7 @@ zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c col
 
 ## fzf file browser
 [[ -d "${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/" ]] && {
-    alias fzfe="${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfe"
-    alias fzind=fzfe
+    alias fzfe='${__dot_foreign_path}/dotfiles-recoberger-fzf.local/.local/bin/fzfe'
     alias fzfbrowse=fzfe
 }
 
@@ -611,8 +592,8 @@ prompt grml
 
 # external cli command completion support
 ## Google Compute Engine
-#[[ -d "${HOME}/google-cloud-sdk" ]] && {
-#  source "${HOME}/google-cloud-sdk/path.zsh.inc"
-#  source "${HOME}/google-cloud-sdk/completion.zsh.inc"
-#}
+[[ -d "${HOME}/google-cloud-sdk" ]] && {
+  source "${HOME}/google-cloud-sdk/path.zsh.inc"
+  source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+}
 # EOF
